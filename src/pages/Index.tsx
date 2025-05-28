@@ -120,8 +120,7 @@ const Index = () => {
         "All-in-One Website Guide for Kozhikode. Winner of Second Prize in National Level Hackathon, Build for Kozhikode.",
       type: "web",
       link: "https://cali-vista.vercel.app/", // You can replace this with the actual link
-      image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      image: "/uploads/calivista-screenshot.jpg",
       category: "Web Development",
       status: "Completed",
       award: "2nd Prize - Build for Kozhikode",
@@ -132,7 +131,7 @@ const Index = () => {
         "An application designed to track and reduce electricity wastage. Winner of Second Prize in Sahakiran Energy Ideathon.",
       type: "app",
       image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",
+        "https://images.pexels.com/photos/1556704/pexels-photo-1556704.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       category: "Mobile App",
       status: "In Development",
       award: "2nd Prize - Sahakiran Energy Ideathon",
@@ -607,7 +606,7 @@ const Index = () => {
                         alt={project.title}
                         className="w-full h-full object-cover rounded-t-2xl group-hover:scale-105 transition-transform duration-300"
                       />
-                        {/*<div className="absolute top-4 left-4">
+                      {/*<div className="absolute top-4 left-4">
                         <span className="px-3 py-1 bg-black/70 text-white text-xs rounded-full backdrop-blur-sm">
                           {project.category}
                         </span>
