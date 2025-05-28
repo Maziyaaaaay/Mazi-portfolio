@@ -94,21 +94,21 @@ const Index = () => {
 
   const projects = [
     {
-      title: "Video Title",
+      title: "ART OF TEACHING",
       description: "Video Description",
       videoSrc: "/uploads/aot.mp4",
       thumbnailSrc: "/uploads/aot.jpg",
       type: "video",
     },
     {
-      title: "Video Title",
+      title: "PERMUTE - SKILL FEST",
       description: "Video Description",
       videoSrc: "/uploads/permute.mp4",
       thumbnailSrc: "/uploads/permute.jpg",
       type: "video",
     },
     {
-      title: "Video Title",
+      title: "MU LEARN INTERNS MEET",
       description: "Video Description",
       videoSrc: "/uploads/sibin.mp4",
       thumbnailSrc: "/uploads/sibin.jpg",
@@ -184,7 +184,7 @@ const Index = () => {
 
   return (
     <div
-      className={`min-h-screen transition-colors duration-300 font-outfit ${
+      className={`min-h-screen transition-colors duration-300 overflow-x-hidden font-outfit ${
         isDarkMode ? "dark" : ""
       }`}
     >
@@ -307,9 +307,10 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="flex justify-center lg:justify-end"
               >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-3xl blur-2xl opacity-30"></div>
-                  <div className="relative w-80 h-96 md:w-96 md:h-[28rem] lg:w-[420px] lg:h-[32rem] overflow-hidden rounded-3xl bg-gray-100 dark:bg-gray-800">
+                <div className="relative max-w-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-3xl blur-2xl opacity-30 transform scale-95"></div>
+
+                  <div className="relative w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[28rem] lg:w-[420px] lg:h-[32rem] overflow-hidden rounded-3xl bg-gray-100 dark:bg-gray-800 mx-auto">
                     <img
                       src="/uploads/profile.jpeg"
                       alt="Mohammed Mazin KP"
@@ -380,10 +381,10 @@ const Index = () => {
                       </h3>
                     </div>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-                      Currently working as an Intern at MuLearn Foundation, I
-                      collaborate with teams of editors, animators, and
-                      videographers to create compelling content that tells
-                      stories and drives engagement.
+                      Previously worked as an Intern at MuLearn Foundation,
+                      where I collaborated with teams of editors, animators, and
+                      videographers to create compelling content that told
+                      stories and drove engagement.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <span className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full">
@@ -654,7 +655,7 @@ const Index = () => {
                       )}
                     </div>
                     <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-3">
-                      {project.description}
+                      {project.type !== "video" && project.description}
                     </p>
                     {project.award && (
                       <div className="flex items-center text-xs text-amber-600 dark:text-amber-400">
