@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "0.0.0.0",
     port: 8080,
-    allowedHosts: ["fancy-dragons-appear.loca.lt"],
+    allowedHosts: ["honest-facts-shop.loca.lt"],
   },
   plugins: [react()].filter(Boolean),
   resolve: {

@@ -258,7 +258,7 @@ const Index = () => {
                 <h1 className="font-bebas text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-black dark:text-white mb-6 tracking-wider leading-tight">
                   MUHAMMED
                   <br />
-                  <span className="text-gray-600 dark:text-gray-400">
+                  <span className="text-gray-600 dark:text-gray-500">
                     MAZIN KP
                   </span>
                 </h1>
