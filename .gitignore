@@ -1,2 +1,27 @@
-node_modules/
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# misc
 .DS_Store
+*.pem
+*.tsbuildinfo
+.claude/settings.local.json
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env*
+
+# vercel
+.vercel

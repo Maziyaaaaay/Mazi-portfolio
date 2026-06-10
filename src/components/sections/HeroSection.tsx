@@ -1,0 +1,231 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ArrowRight,
+  Clapperboard,
+  GraduationCap,
+  Play,
+  Rocket,
+  Trophy,
+} from "lucide-react";
+import { HERO } from "@/lib/constants";
+import { EASE_CINE } from "@/lib/animations";
+import FilmStrip from "@/components/ui/FilmStrip";
+import VideoModal from "@/components/ui/VideoModal";
+
+const ROLE_ICONS = [Clapperboard, GraduationCap, Rocket, Trophy];
+const VISIBLE_PILLS = 3;
+
+export default function HeroSection() {
+  const [roleOffset, setRoleOffset] = useState(0);
+  const [reelOpen, setReelOpen] = useState(false);
+
+  useEffect(() => {
+    const id = setInterval(
+      () => setRoleOffset((v) => (v + 1) % HERO.roles.length),
+      3000
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  const visibleRoles = Array.from({ length: VISIBLE_PILLS }, (_, i) => {
+    const idx = (roleOffset + i) % HERO.roles.length;
+    return { role: HERO.roles[idx], Icon: ROLE_ICONS[idx] };
+  });
+
+  return (
+    <section
+      className="relative flex min-h-dvh flex-col overflow-hidden"
+      aria-label="Introduction"
+    >
+      {/* Ambient filmstrip — context, not focus */}
+      <div className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-40">
+        <FilmStrip />
+      </div>
+      {/* readability scrim over the strip */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void via-void/60 to-void/30" />
+
+      <div className="container-cine relative z-10 grid flex-1 items-center gap-12 pb-16 pt-28 lg:grid-cols-[1fr_auto] lg:gap-20 lg:pt-32">
+        {/* ------------------------------------------------ text column */}
+        <div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE_CINE }}
+            className="mb-6 font-body text-xs font-medium uppercase tracking-[0.3em] text-gold md:text-sm"
+          >
+            {HERO.eyebrow}
+          </motion.p>
+
+          <h1 className="font-display leading-[0.88] text-cream">
+            {HERO.headline.map((line, i) => (
+              <span
+                key={line}
+                className="block overflow-hidden text-[clamp(64px,13vw,160px)]"
+              >
+                <motion.span
+                  className="block"
+                  initial={{ y: "110%" }}
+                  animate={{ y: "0%" }}
+                  transition={{
+                    duration: 0.9,
+                    delay: 0.25 + i * 0.15,
+                    ease: EASE_CINE,
+                  }}
+                >
+                  {line}
+                  {i === HERO.headline.length - 1 && (
+                    <span className="text-gold">.</span>
+                  )}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
+
+          {/* role pills — a rotating window over the four roles */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.9, ease: EASE_CINE }}
+            className="mt-8 flex flex-wrap items-center gap-3"
+          >
+            <AnimatePresence mode="popLayout" initial={false}>
+              {visibleRoles.map(({ role, Icon }) => (
+                <motion.span
+                  key={role}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.5, ease: EASE_CINE }}
+                  className="flex items-center gap-2 rounded-full border border-gold/30 bg-void/40 px-4 py-1.5 font-body text-[13px] text-cream/85"
+                >
+                  <Icon size={14} className="text-gold" aria-hidden />
+                  {role}
+                </motion.span>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.0, ease: EASE_CINE }}
+            className="mt-6 max-w-md font-body text-lg text-muted"
+          >
+            {HERO.supporting}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.1, ease: EASE_CINE }}
+            className="mt-10 flex flex-wrap items-center gap-4"
+          >
+            <a
+              href="#work"
+              className="group flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.12em] text-void transition-colors duration-300 hover:bg-cream"
+            >
+              See My Work
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden
+              />
+            </a>
+            <button
+              type="button"
+              onClick={() => setReelOpen(true)}
+              className="flex items-center gap-2 rounded-full border border-gold px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.12em] text-gold transition-colors duration-300 hover:bg-gold/10"
+            >
+              <Play size={15} aria-hidden />
+              Watch Reel
+            </button>
+          </motion.div>
+        </div>
+
+        {/* ------------------------------------------------ photo column */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.1, delay: 0.5, ease: EASE_CINE }}
+          className="relative hidden lg:block"
+        >
+          {/* amber glow sits outside the clipped frame */}
+          <div
+            className="absolute -inset-10 rounded-full bg-gold/10 blur-3xl"
+            aria-hidden
+          />
+          <div
+            className="relative h-[480px] w-[360px] overflow-hidden xl:h-[520px] xl:w-[390px]"
+            style={{
+              clipPath: "polygon(0 2.5%, 100% 0, 100% 97.5%, 0 100%)",
+              boxShadow: "0 0 80px rgba(200, 169, 110, 0.15)",
+            }}
+          >
+            <Image
+              src="/uploads/profile.jpeg"
+              alt="Muhammed Mazin KP leaning against a black car, teal striped shirt, Kerala"
+              fill
+              sizes="(min-width: 1280px) 390px, 360px"
+              className="object-cover saturate-[0.85] contrast-105"
+              priority
+            />
+            {/* viewfinder overlay */}
+            <div className="pointer-events-none absolute inset-0" aria-hidden>
+              <span className="absolute left-4 top-5 h-5 w-5 border-l border-t border-gold/50" />
+              <span className="absolute right-4 top-5 h-5 w-5 border-r border-t border-gold/50" />
+              <span className="absolute bottom-5 left-4 h-5 w-5 border-b border-l border-gold/50" />
+              <span className="absolute bottom-5 right-4 h-5 w-5 border-b border-r border-gold/50" />
+              {/* thirds grid */}
+              <span className="absolute inset-y-0 left-1/3 w-px bg-cream/5" />
+              <span className="absolute inset-y-0 left-2/3 w-px bg-cream/5" />
+              <span className="absolute inset-x-0 top-1/3 h-px bg-cream/5" />
+              <span className="absolute inset-x-0 top-2/3 h-px bg-cream/5" />
+              {/* center crosshair */}
+              <span className="absolute left-1/2 top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-gold/40" />
+              <span className="absolute left-1/2 top-1/2 h-px w-3 -translate-x-1/2 -translate-y-1/2 bg-gold/40" />
+              <p className="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.3em] text-cream/40">
+                MAZIN KP · 24FPS
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ------------------------------------------------ stats bar */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.3, ease: EASE_CINE }}
+        className="relative z-10 border-t border-line"
+      >
+        <div className="container-cine flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-5 md:justify-between md:gap-x-2">
+          {HERO.stats.map((stat, i) => (
+            <span
+              key={stat}
+              className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:text-xs"
+            >
+              {stat}
+              {i < HERO.stats.length - 1 && (
+                <span className="hidden text-gold md:inline" aria-hidden>
+                  ·
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+      </motion.div>
+
+      <VideoModal
+        open={reelOpen}
+        src={HERO.reelVideo}
+        title="Showreel — Event Film"
+        onClose={() => setReelOpen(false)}
+      />
+    </section>
+  );
+}
