@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { FILM_FRAMES } from "@/lib/constants";
+import { asset } from "@/lib/asset";
 import PosterFrame from "@/components/ui/PosterFrame";
 
 const FRAME_HEIGHTS = [200, 230, 184, 216, 196, 224, 188, 210];
@@ -58,7 +59,7 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
             >
               {frame.src ? (
                 <Image
-                  src={frame.src}
+                  src={asset(frame.src)}
                   alt={frame.alt}
                   fill
                   sizes="280px"
