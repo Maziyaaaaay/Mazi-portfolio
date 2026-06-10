@@ -302,7 +302,7 @@ export const PROJECTS: Project[] = [
     category: "startup",
     categoryLabel: "STARTUP · IOT × AI",
     description:
-      "Smart electricity monitoring system for Kerala households. 83 validated market survey responses. 88% purchase intent.",
+      "Smart electricity monitoring system for Kerala households. Real-time energy intelligence for everyday homes.",
     status: "IN DEVELOPMENT",
     award: "2nd Prize — Sahakiran Energy Ideathon",
     poster: {
@@ -427,7 +427,7 @@ export const TEACHING = {
   paragraph:
     "At Demand School, I run AI Contentology — the only course where students graduate having produced real, commercialized AI ads. Not simulated projects. Actual client-grade brand films.",
   highlights: [
-    "Pilot batch: 10 students, 3 months",
+    "Real client briefs, not classroom exercises",
     "Output: commercially-viable AI ad films",
     "Platform: Demand School",
     "Also: expert session at Synaptics, IEEE SB COET",
