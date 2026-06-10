@@ -12,6 +12,7 @@ import {
   Trophy,
 } from "lucide-react";
 import { HERO } from "@/lib/constants";
+import { asset } from "@/lib/asset";
 import { EASE_CINE } from "@/lib/animations";
 import FilmStrip from "@/components/ui/FilmStrip";
 import VideoModal from "@/components/ui/VideoModal";
@@ -167,7 +168,7 @@ export default function HeroSection() {
             }}
           >
             <Image
-              src="/uploads/profile.jpeg"
+              src={asset("/uploads/profile.jpeg")}
               alt="Muhammed Mazin KP leaning against a black car, teal striped shirt, Kerala"
               fill
               sizes="(min-width: 1280px) 390px, 360px"

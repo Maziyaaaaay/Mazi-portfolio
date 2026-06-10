@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { asset } from "@/lib/asset";
 import { EASE_CINE } from "@/lib/animations";
 
 interface VideoModalProps {
@@ -69,7 +70,7 @@ export default function VideoModal({
             )}
             {/* Video only mounts when the modal opens — nothing preloads. */}
             <video
-              src={src}
+              src={asset(src)}
               controls
               autoPlay
               playsInline

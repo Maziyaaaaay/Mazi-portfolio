@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Award, ExternalLink, Play } from "lucide-react";
 import type { Project } from "@/types";
+import { asset } from "@/lib/asset";
 import PosterFrame from "@/components/ui/PosterFrame";
 
 const STATUS_STYLES: Record<Project["status"], string> = {
@@ -35,7 +36,7 @@ export default function ProjectCard({
       <div className="absolute inset-0 transition-transform duration-[400ms] ease-out group-hover:scale-105">
         {project.image ? (
           <Image
-            src={project.image}
+            src={asset(project.image)}
             alt={project.imageAlt ?? project.title}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
