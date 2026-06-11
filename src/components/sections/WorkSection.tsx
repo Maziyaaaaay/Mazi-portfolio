@@ -20,7 +20,6 @@ const ASPECTS: Record<string, string> = {
   ampaware: "aspect-[4/3]",
   tripsplit: "aspect-[4/5]",
   calivista: "aspect-[16/10]",
-  pitchalia: "aspect-[4/3]",
   "art-of-teaching": "aspect-video",
 };
 

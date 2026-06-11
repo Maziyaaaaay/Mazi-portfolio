@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { TEACHING } from "@/lib/constants";
 import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
@@ -85,20 +85,6 @@ export default function TeachingSection() {
                 <p>Full AI production pipeline</p>
                 <p>Output: commercialized AI ads</p>
               </div>
-
-              <a
-                href={TEACHING.courseLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group mt-9 inline-flex items-center gap-2 font-body text-sm font-semibold uppercase tracking-[0.15em] text-gold transition-colors duration-300 hover:text-cream"
-              >
-                {TEACHING.courseCta}
-                <ArrowRight
-                  size={15}
-                  className="transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden
-                />
-              </a>
             </div>
           </motion.div>
         </div>

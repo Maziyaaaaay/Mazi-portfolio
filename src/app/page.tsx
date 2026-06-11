@@ -4,6 +4,7 @@ import ManifestoSection from "@/components/sections/ManifestoSection";
 import WhatIDoSection from "@/components/sections/WhatIDoSection";
 import ToolStackSection from "@/components/sections/ToolStackSection";
 import WorkSection from "@/components/sections/WorkSection";
+import ConceptLabSection from "@/components/sections/ConceptLabSection";
 import AchievementsSection from "@/components/sections/AchievementsSection";
 import TeachingSection from "@/components/sections/TeachingSection";
 import TravelSection from "@/components/sections/TravelSection";
@@ -20,6 +21,7 @@ export default function Home() {
         <WhatIDoSection />
         <ToolStackSection />
         <WorkSection />
+        <ConceptLabSection />
         <AchievementsSection />
         <TeachingSection />
         <TravelSection />
