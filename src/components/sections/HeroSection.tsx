@@ -224,7 +224,7 @@ export default function HeroSection() {
       <VideoModal
         open={reelOpen}
         src={HERO.reelVideo}
-        title="Showreel — Event Film"
+        title="Showreel — HU Brand Film"
         onClose={() => setReelOpen(false)}
       />
     </section>

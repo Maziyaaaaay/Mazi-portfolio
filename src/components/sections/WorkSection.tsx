@@ -13,8 +13,10 @@ type FilterId = (typeof WORK_FILTERS)[number]["id"];
 /** Editorial variation — not every frame is the same shape. */
 const ASPECTS: Record<string, string> = {
   hu: "aspect-[16/9] md:aspect-[21/9]",
-  topad: "aspect-[4/3]",
+  topad: "aspect-[4/5]",
   coreve: "aspect-[4/5]",
+  nurena: "aspect-[16/10]",
+  ict: "aspect-[4/5]",
   ampaware: "aspect-[4/3]",
   tripsplit: "aspect-[4/5]",
   calivista: "aspect-[16/10]",
