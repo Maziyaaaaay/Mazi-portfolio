@@ -66,6 +66,16 @@ export interface FilmFrame {
   poster?: PosterStyle;
 }
 
+export interface Concept {
+  id: string;
+  title: string;
+  /** Small mono tag, e.g. "SPEC AD". */
+  tag: string;
+  video: string;
+  image: string;
+  alt: string;
+}
+
 export interface StatItem {
   value: number;
   suffix: string;

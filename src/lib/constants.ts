@@ -1,5 +1,6 @@
 import type {
   Achievement,
+  Concept,
   FilmFrame,
   NavLink,
   PipelineStage,
@@ -347,21 +348,6 @@ export const PROJECTS: Project[] = [
       "Calivista city guide homepage over an aerial view of Kozhikode beach",
   },
   {
-    id: "pitchalia",
-    title: "Pitchalia",
-    category: "web-app",
-    categoryLabel: "WEB APP · BUILT LIVE",
-    description:
-      "Built live at Google for AI Startups 2026. AI-powered pitch deck generator.",
-    status: "PROTOTYPE",
-    poster: {
-      title: "PITCHALIA",
-      sub: "GOOGLE FOR AI STARTUPS '26",
-      gradient: "linear-gradient(120deg, #131318 0%, #0b0b0e 55%, #060606 100%)",
-      accent: "#aab4d4",
-    },
-  },
-  {
     id: "art-of-teaching",
     title: "Art of Teaching",
     category: "ai-films",
@@ -371,6 +357,51 @@ export const PROJECTS: Project[] = [
     image: "/uploads/aot.jpg",
     imageAlt: "Speaker on stage mid-gesture at a MuLearn Foundation event",
     video: "/uploads/aot.mp4",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Concept Lab                                                        */
+/* ------------------------------------------------------------------ */
+
+export const CONCEPT_LAB = {
+  eyebrow: "The Lab",
+  heading: "CONCEPT LAB",
+  sub: "Spec ads and pipeline experiments. No brief, no client — just seeing how far generative AI can be pushed.",
+} as const;
+
+export const CONCEPTS: Concept[] = [
+  {
+    id: "lenskart",
+    title: "Lenskart — Spoof Ad",
+    tag: "SPEC AD",
+    video: "/uploads/films/lenskart.mp4",
+    image: "/uploads/films/lenskart.jpg",
+    alt: "Frame from a spec spoof ad for Lenskart",
+  },
+  {
+    id: "rayban",
+    title: "Meta Ray-Ban — Concept",
+    tag: "CONCEPT",
+    video: "/uploads/films/rayban.mp4",
+    image: "/uploads/films/rayban.jpg",
+    alt: "Frame from a concept film for Meta Ray-Ban smart glasses",
+  },
+  {
+    id: "bluestone",
+    title: "Bluestone — Jewelry Spot",
+    tag: "SPEC AD",
+    video: "/uploads/films/bluestone.mp4",
+    image: "/uploads/films/bluestone.jpg",
+    alt: "Frame from a spec jewelry spot for Bluestone",
+  },
+  {
+    id: "seen",
+    title: "Seen Eyewear — Product Film",
+    tag: "SPEC AD",
+    video: "/uploads/films/seen.mp4",
+    image: "/uploads/films/seen.jpg",
+    alt: "Frame from a product film for Seen Eyewear",
   },
 ];
 
@@ -440,8 +471,6 @@ export const TEACHING = {
   courseTitle: "AI CONTENTOLOGY",
   courseBy: "By Mazin KP",
   coursePlatform: "Demand School",
-  courseCta: "LEARN MORE",
-  courseLink: "https://demandschool.com",
 } as const;
 
 /* ------------------------------------------------------------------ */
