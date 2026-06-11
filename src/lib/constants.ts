@@ -427,6 +427,28 @@ export const TRAVEL = {
   sub: "Thailand · Malaysia · and counting...",
   line: "Working toward documenting the world, one city at a time.",
   note: "Long-term: travel content creator",
+  photos: [
+    {
+      src: "/uploads/travel/travel-phiphi.jpg",
+      alt: "Mazin sitting on a speedboat bow at Phi Phi, Thailand, limestone cliffs and emerald water behind him",
+      caption: "PHI PHI · THAILAND",
+    },
+    {
+      src: "/uploads/travel/travel-phuket.jpg",
+      alt: "Mazin leaning on a pole in front of a yellow Sino-Portuguese building in Phuket Old Town",
+      caption: "PHUKET OLD TOWN · THAILAND",
+    },
+    {
+      src: "/uploads/travel/travel-kl.jpg",
+      alt: "Mazin standing in front of the colorful Sungei Wang mural in Kuala Lumpur",
+      caption: "KUALA LUMPUR · MALAYSIA",
+    },
+    {
+      src: "/uploads/travel/travel-genting.jpg",
+      alt: "Mazin leaning on a glass balcony rail with the misty Genting hills behind him",
+      caption: "GENTING · MALAYSIA",
+    },
+  ],
 } as const;
 
 /* ------------------------------------------------------------------ */
