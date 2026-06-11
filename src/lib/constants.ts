@@ -3,7 +3,6 @@ import type {
   Concept,
   FilmFrame,
   NavLink,
-  PipelineStage,
   Project,
   Service,
   StatItem,
@@ -19,7 +18,7 @@ export const SITE = {
   url: "https://mazinkp.in",
   title: "Muhammed Mazin KP — AI Content Architect, Educator & Founder",
   description:
-    "AI Content Architect producing cinematic brand films for Gulf clients. Co-founder of AmpAware. AI Educator at Demand School. 5x Hackathon Winner from Kerala, India.",
+    "AI Content Architect producing cinematic AI brand films for clients worldwide. Co-founder & CEO of AmpAware. 5x Hackathon Winner from Kerala, India.",
   email: "mazinkp2005@gmail.com",
   phone: "+91 7306667874",
   phoneHref: "tel:+917306667874",
@@ -45,12 +44,12 @@ export const HERO = {
   headline: ["MAKING", "BRANDS", "MOVE"],
   roles: [
     "AI Brand Films",
-    "AI Education",
-    "Startup Founder",
+    "Co-founder · AmpAware",
     "Hackathon Winner",
+    "AI Education",
   ],
   supporting:
-    "Cinematic AI brand films for Gulf brands. Teaching the next generation of AI creators.",
+    "Cinematic AI brand films for brands worldwide. Co-founder & CEO of AmpAware.",
   reelVideo: "/uploads/films/hu.mp4",
   stats: [
     "5+ Hackathon Wins",
@@ -128,7 +127,7 @@ export const MANIFESTO = {
     },
     { text: "will this move someone?", gold: true },
     {
-      text: " That's the standard. Gulf brands, student creators, startup decks — ",
+      text: " That's the standard. Global brands, student creators, startup decks — ",
     },
     { text: "same answer required.", gold: true },
   ],
@@ -155,15 +154,6 @@ export const SERVICES: Service[] = [
     clients: "HU (UAE) · TopAd (Oman) · Coreve · Nurena",
   },
   {
-    id: "ai-education",
-    icon: "graduation-cap",
-    title: "AI EDUCATION",
-    description:
-      "Teaching creators and students to produce commercialized AI content, not just play with tools.",
-    tools: "Demand School · IEEE COET · 50+ Students Taught",
-    clients: "AI Contentology Course · Synaptics Workshop",
-  },
-  {
     id: "startup-building",
     icon: "zap",
     title: "STARTUP BUILDING",
@@ -171,6 +161,15 @@ export const SERVICES: Service[] = [
       "Co-founding AmpAware, a smart electricity monitoring system for Kerala households.",
     tools: "IoT · AI · Next.js · Supabase",
     clients: "AmpAware · TripSplit · Calivista",
+  },
+  {
+    id: "ai-education",
+    icon: "graduation-cap",
+    title: "AI EDUCATION",
+    description:
+      "Teaching creators and students to produce commercialized AI content, not just play with tools.",
+    tools: "Demand School · IEEE COET · 50+ Students Taught",
+    clients: "AI Contentology Course · Synaptics Workshop",
   },
   {
     id: "content-brand",
@@ -182,51 +181,6 @@ export const SERVICES: Service[] = [
     clients: "Personal Brand · Client Ghostwriting",
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/*  Pipeline                                                           */
-/* ------------------------------------------------------------------ */
-
-export const PIPELINE: PipelineStage[] = [
-  {
-    stage: "BRIEF",
-    tool: "Client Brief",
-    description: "Goals, audience, brand world — Desgro Media",
-  },
-  {
-    stage: "CONCEPT",
-    tool: "ChatGPT / Claude",
-    description: "Script, storyboard, prompt architecture",
-  },
-  {
-    stage: "IMAGE GEN",
-    tool: "ChatGPT / Midjourney",
-    description: "Photorealistic product frames, character concepts",
-  },
-  {
-    stage: "VIDEO ANIMATION",
-    tool: "Kling 3.0 · Veo 3.1 · Seedance 2.0",
-    description: "Animate stills to cinematic clips",
-  },
-  {
-    stage: "ASSEMBLY",
-    tool: "CapCut",
-    description: "Scene sequencing, timing, color grade",
-  },
-  {
-    stage: "VOICEOVER",
-    tool: "ElevenLabs",
-    description: "Natural AI voiceover, brand-matched voice",
-  },
-  {
-    stage: "DELIVERY",
-    tool: "Client Review",
-    description: "Review, revision, final export",
-  },
-];
-
-export const PIPELINE_NOTE =
-  "Each tool is chosen for the brief. Kling 3.0 for motion quality, Veo 3.1 for speed, Seedance 2.0 for style control. The pipeline adapts.";
 
 /* ------------------------------------------------------------------ */
 /*  Work                                                               */
@@ -432,19 +386,10 @@ export const ACHIEVEMENTS: Achievement[] = [
       "Prompt engineering workshop, 50+ students, IEEE SB COET. Team went on to win the next hackathon.",
   },
   {
-    year: "2024",
-    title: "2nd Prize — Build for Kozhikode",
-    context: "National level hackathon (Calivista)",
-  },
-  {
-    year: "2024",
-    title: "2nd Prize — Sahakiran Energy Ideathon",
-    context: "Smart energy startup (AmpAware)",
-  },
-  {
     year: "2023–26",
     title: "5x Hackathon Winner",
-    context: "Including NASA Space Apps Challenge recognition",
+    context:
+      "Including NASA Space Apps recognition, Build for Kozhikode, and Sahakiran Energy Ideathon",
   },
   {
     year: "2023",

@@ -23,20 +23,20 @@ export default function TravelSection() {
       >
         <defs>
           <pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1" fill="#f2ede8" />
+            <circle cx="2" cy="2" r="1" style={{ fill: "var(--text-primary)" }} />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#dots)" />
         <path
           d="M 120 250 Q 400 60 720 190 T 1300 120"
           fill="none"
-          stroke="#c8a96e"
+          style={{ stroke: "var(--accent-gold)" }}
           strokeWidth="1.5"
           strokeDasharray="6 8"
         />
-        <circle cx="120" cy="250" r="4" fill="#c8a96e" />
-        <circle cx="720" cy="190" r="4" fill="#c8a96e" />
-        <circle cx="1300" cy="120" r="4" fill="#c8a96e" />
+        <circle cx="120" cy="250" r="4" style={{ fill: "var(--accent-gold)" }} />
+        <circle cx="720" cy="190" r="4" style={{ fill: "var(--accent-gold)" }} />
+        <circle cx="1300" cy="120" r="4" style={{ fill: "var(--accent-gold)" }} />
       </svg>
 
       <motion.div

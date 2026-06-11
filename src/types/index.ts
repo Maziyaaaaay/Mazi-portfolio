@@ -45,12 +45,6 @@ export interface Service {
   clients: string;
 }
 
-export interface PipelineStage {
-  stage: string;
-  tool: string;
-  description: string;
-}
-
 export interface Achievement {
   year: string;
   title: string;

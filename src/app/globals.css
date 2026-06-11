@@ -5,6 +5,7 @@
 /* ------------------------------------------------------------------ */
 
 :root {
+  color-scheme: dark;
   --bg-void: #080808;
   --bg-surface: #111111;
   --bg-elevated: #1c1c1c;
@@ -14,6 +15,25 @@
   --text-secondary: #8a8580;
   --text-tertiary: #4a4540;
   --border-subtle: rgba(242, 237, 232, 0.06);
+  --nav-bg: rgba(8, 8, 8, 0.85);
+  --grain-opacity: 0.04;
+}
+
+/* Light theme — warm gallery paper, same gold spine. Toggled by
+   ThemeToggle via a class on <html>, persisted in localStorage. */
+html.light {
+  color-scheme: light;
+  --bg-void: #f4f0e8;
+  --bg-surface: #ece6da;
+  --bg-elevated: #e2d9c8;
+  --accent-gold: #8a6a35;
+  --accent-gold-dim: #a98b52;
+  --text-primary: #221c14;
+  --text-secondary: #5f574a;
+  --text-tertiary: #978d7c;
+  --border-subtle: rgba(34, 28, 20, 0.1);
+  --nav-bg: rgba(244, 240, 232, 0.85);
+  --grain-opacity: 0.05;
 }
 
 @theme inline {
@@ -55,6 +75,8 @@ body {
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.5s cubic-bezier(0.76, 0, 0.24, 1),
+    color 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 ::selection {
@@ -86,7 +108,7 @@ body::after {
   inset: 0;
   z-index: 90;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: var(--grain-opacity);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
 }
