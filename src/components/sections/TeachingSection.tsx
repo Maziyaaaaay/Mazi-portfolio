@@ -81,8 +81,8 @@ export default function TeachingSection() {
               </p>
 
               <div className="mt-8 space-y-2 border-t border-line pt-6 font-mono text-[11px] uppercase tracking-[0.15em] text-muted">
-                <p>10 students · pilot batch</p>
-                <p>3 months · real client briefs</p>
+                <p>Real client briefs</p>
+                <p>Full AI production pipeline</p>
                 <p>Output: commercialized AI ads</p>
               </div>
 

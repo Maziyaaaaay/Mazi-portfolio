@@ -50,7 +50,7 @@ export const HERO = {
   ],
   supporting:
     "Cinematic AI brand films for Gulf brands. Teaching the next generation of AI creators.",
-  reelVideo: "/uploads/permute.mp4",
+  reelVideo: "/uploads/films/hu.mp4",
   stats: [
     "5+ Hackathon Wins",
     "6 Countries Visited",
@@ -66,14 +66,9 @@ export const FILM_FRAMES: FilmFrame[] = [
     label: "PERMUTE · EVENT FILM",
   },
   {
-    alt: "Typographic frame for the HU brand film, lime green on forest dark",
+    src: "/uploads/films/hu.jpg",
+    alt: "Frame from the HU brand identity film for Happy User, UAE",
     label: "HU · UAE",
-    poster: {
-      title: "HU",
-      sub: "MADE FOR HAPPY USERS",
-      gradient: "linear-gradient(135deg, #0d1f14 0%, #08110b 60%, #050505 100%)",
-      accent: "#b8e986",
-    },
   },
   {
     src: "/uploads/aot.jpg",
@@ -81,14 +76,9 @@ export const FILM_FRAMES: FilmFrame[] = [
     label: "ART OF TEACHING",
   },
   {
-    alt: "Typographic frame for the TopAd exhibition commercial, Oman",
+    src: "/uploads/films/topad.jpg",
+    alt: "Frame from the TopAd exhibition commercial, Oman",
     label: "TOPAD · OMAN",
-    poster: {
-      title: "TOPAD",
-      sub: "EXHIBITIONS, ELEVATED",
-      gradient: "linear-gradient(135deg, #1c1408 0%, #0f0b06 60%, #050505 100%)",
-      accent: "#c8a96e",
-    },
   },
   {
     src: "/uploads/calivista-screenshot.jpg",
@@ -96,19 +86,19 @@ export const FILM_FRAMES: FilmFrame[] = [
     label: "CALIVISTA · WEB",
   },
   {
-    alt: "Typographic frame for the Coreve sneaker launch film",
+    src: "/uploads/films/coreve.jpg",
+    alt: "Frame from the Coreve sneaker launch film",
     label: "COREVE · LAUNCH",
-    poster: {
-      title: "COREVE",
-      sub: "STEP WITHOUT COMPROMISE",
-      gradient: "linear-gradient(135deg, #17100e 0%, #0d0908 60%, #050505 100%)",
-      accent: "#e8cfc0",
-    },
   },
   {
-    src: "/uploads/sibin.jpg",
-    alt: "Vertical event reel frame from MuMeet 24",
-    label: "MUMEET · REEL",
+    src: "/uploads/films/nurena.jpg",
+    alt: "Frame from the Nurena Mobile Wellness brand film",
+    label: "NURENA · WELLNESS",
+  },
+  {
+    src: "/uploads/films/ict.jpg",
+    alt: "Frame from the ICT Senior Secondary School campaign film",
+    label: "ICT · CAMPAIGN",
   },
   {
     alt: "Typographic frame for AmpAware smart energy startup",
@@ -259,12 +249,9 @@ export const PROJECTS: Project[] = [
     status: "DELIVERED",
     link: "https://myhustore.com",
     featured: true,
-    poster: {
-      title: "HU",
-      sub: "MADE FOR HAPPY USERS",
-      gradient: "linear-gradient(120deg, #11271a 0%, #0a160e 55%, #060606 100%)",
-      accent: "#b8e986",
-    },
+    image: "/uploads/films/hu.jpg",
+    imageAlt: "Frame from the HU brand identity film for Happy User, UAE",
+    video: "/uploads/films/hu.mp4",
   },
   {
     id: "topad",
@@ -274,12 +261,9 @@ export const PROJECTS: Project[] = [
     description:
       "AI-generated brand film for Oman's leading exhibition company. Showcasing scale, prestige, and event excellence.",
     status: "DELIVERED",
-    poster: {
-      title: "TOPAD",
-      sub: "EXHIBITIONS, ELEVATED",
-      gradient: "linear-gradient(120deg, #211808 0%, #120d05 55%, #060606 100%)",
-      accent: "#c8a96e",
-    },
+    image: "/uploads/films/topad.jpg",
+    imageAlt: "Frame from the TopAd exhibition commercial, Oman",
+    video: "/uploads/films/topad.mp4",
   },
   {
     id: "coreve",
@@ -289,12 +273,33 @@ export const PROJECTS: Project[] = [
     description:
       "Product launch film for a D2C sneaker brand for abaya-wearing women. Cultural precision meets modern aesthetics.",
     status: "DELIVERED",
-    poster: {
-      title: "COREVE",
-      sub: "STEP WITHOUT COMPROMISE",
-      gradient: "linear-gradient(120deg, #1d1310 0%, #100b09 55%, #060606 100%)",
-      accent: "#e8cfc0",
-    },
+    image: "/uploads/films/coreve.jpg",
+    imageAlt: "Frame from the Coreve sneaker launch film",
+    video: "/uploads/films/coreve.mp4",
+  },
+  {
+    id: "nurena",
+    title: "Nurena — Wellness Film",
+    category: "ai-films",
+    categoryLabel: "AI BRAND FILM · WELLNESS",
+    description:
+      "Brand film for Nurena Mobile Wellness. Calm, clinical confidence rendered with generative AI.",
+    status: "DELIVERED",
+    image: "/uploads/films/nurena.jpg",
+    imageAlt: "Frame from the Nurena Mobile Wellness brand film",
+    video: "/uploads/films/nurena.mp4",
+  },
+  {
+    id: "ict",
+    title: "ICT School — Campaign Film",
+    category: "ai-films",
+    categoryLabel: "AI BRAND FILM · EDUCATION",
+    description:
+      "Campaign film for ICT Senior Secondary School. Institutional storytelling with cinematic AI production.",
+    status: "DELIVERED",
+    image: "/uploads/films/ict.jpg",
+    imageAlt: "Frame from the ICT Senior Secondary School campaign film",
+    video: "/uploads/films/ict.mp4",
   },
   {
     id: "ampaware",
@@ -302,7 +307,7 @@ export const PROJECTS: Project[] = [
     category: "startup",
     categoryLabel: "STARTUP · IOT × AI",
     description:
-      "Smart electricity monitoring system for Kerala households. 83 validated market survey responses. 88% purchase intent.",
+      "Smart electricity monitoring system for Kerala households. Real-time energy intelligence for everyday homes.",
     status: "IN DEVELOPMENT",
     award: "2nd Prize — Sahakiran Energy Ideathon",
     poster: {
@@ -427,7 +432,7 @@ export const TEACHING = {
   paragraph:
     "At Demand School, I run AI Contentology — the only course where students graduate having produced real, commercialized AI ads. Not simulated projects. Actual client-grade brand films.",
   highlights: [
-    "Pilot batch: 10 students, 3 months",
+    "Real client briefs, not classroom exercises",
     "Output: commercially-viable AI ad films",
     "Platform: Demand School",
     "Also: expert session at Synaptics, IEEE SB COET",
