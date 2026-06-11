@@ -118,8 +118,16 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${bebas.variable} ${grotesk.variable} ${jetbrains.variable}`}
+      suppressHydrationWarning
     >
       <body>
+        {/* set theme class before paint to avoid a flash of the wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){}",
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

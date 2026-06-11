@@ -1,8 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import {
   ArrowRight,
   Clapperboard,
@@ -15,14 +22,37 @@ import { HERO } from "@/lib/constants";
 import { asset } from "@/lib/asset";
 import { EASE_CINE } from "@/lib/animations";
 import FilmStrip from "@/components/ui/FilmStrip";
+import Magnetic from "@/components/ui/Magnetic";
 import VideoModal from "@/components/ui/VideoModal";
 
-const ROLE_ICONS = [Clapperboard, GraduationCap, Rocket, Trophy];
+const ROLE_ICONS = [Clapperboard, Rocket, Trophy, GraduationCap];
 const VISIBLE_PILLS = 3;
 
 export default function HeroSection() {
   const [roleOffset, setRoleOffset] = useState(0);
   const [reelOpen, setReelOpen] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotion();
+
+  // cursor-driven parallax: layers drift on a weighted spring
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 50, damping: 20, mass: 0.6 });
+  const sy = useSpring(my, { stiffness: 50, damping: 20, mass: 0.6 });
+  const stripX = useTransform(sx, (v) => v * -28);
+  const stripY = useTransform(sy, (v) => v * -12);
+  const photoX = useTransform(sx, (v) => v * 16);
+  const photoY = useTransform(sy, (v) => v * 12);
+  const headlineX = useTransform(sx, (v) => v * 7);
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (reducedMotion) return;
+    const el = sectionRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    mx.set((e.clientX - rect.left) / rect.width - 0.5);
+    my.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
 
   useEffect(() => {
     const id = setInterval(
@@ -39,13 +69,18 @@ export default function HeroSection() {
 
   return (
     <section
+      ref={sectionRef}
+      onMouseMove={onMouseMove}
       className="relative flex min-h-dvh flex-col overflow-hidden"
       aria-label="Introduction"
     >
       {/* Ambient filmstrip — context, not focus */}
-      <div className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-40">
+      <motion.div
+        style={{ x: stripX, y: stripY }}
+        className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-40"
+      >
         <FilmStrip />
-      </div>
+      </motion.div>
       {/* readability scrim over the strip */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void via-void/60 to-void/30" />
 
@@ -61,7 +96,10 @@ export default function HeroSection() {
             {HERO.eyebrow}
           </motion.p>
 
-          <h1 className="font-display leading-[0.88] text-cream">
+          <motion.h1
+            style={{ x: headlineX }}
+            className="font-display leading-[0.88] text-cream"
+          >
             {HERO.headline.map((line, i) => (
               <span
                 key={line}
@@ -84,7 +122,7 @@ export default function HeroSection() {
                 </motion.span>
               </span>
             ))}
-          </h1>
+          </motion.h1>
 
           {/* role pills — a rotating window over the four roles */}
           <motion.div
@@ -126,25 +164,29 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 1.1, ease: EASE_CINE }}
             className="mt-10 flex flex-wrap items-center gap-4"
           >
-            <a
-              href="#work"
-              className="group flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.12em] text-void transition-colors duration-300 hover:bg-cream"
-            >
-              See My Work
-              <ArrowRight
-                size={16}
-                className="transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden
-              />
-            </a>
-            <button
-              type="button"
-              onClick={() => setReelOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-gold px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.12em] text-gold transition-colors duration-300 hover:bg-gold/10"
-            >
-              <Play size={15} aria-hidden />
-              Watch Reel
-            </button>
+            <Magnetic>
+              <a
+                href="#work"
+                className="group flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.12em] text-void transition-colors duration-300 hover:bg-cream"
+              >
+                See My Work
+                <ArrowRight
+                  size={16}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden
+                />
+              </a>
+            </Magnetic>
+            <Magnetic>
+              <button
+                type="button"
+                onClick={() => setReelOpen(true)}
+                className="flex items-center gap-2 rounded-full border border-gold px-7 py-3.5 font-body text-sm font-semibold uppercase tracking-[0.12em] text-gold transition-colors duration-300 hover:bg-gold/10"
+              >
+                <Play size={15} aria-hidden />
+                Watch Reel
+              </button>
+            </Magnetic>
           </motion.div>
         </div>
 
@@ -153,6 +195,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.5, ease: EASE_CINE }}
+          style={{ x: photoX, y: photoY }}
           className="relative hidden lg:block"
         >
           {/* amber glow sits outside the clipped frame */}

@@ -32,6 +32,12 @@ export default function ProjectCard({
     <div
       className={`group relative w-full overflow-hidden rounded-sm border border-line bg-surface ${aspectClass}`}
       data-cursor={hasVideo ? "play" : undefined}
+      onMouseMove={(e) => {
+        const el = e.currentTarget;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        el.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }}
     >
       <div className="absolute inset-0 transition-transform duration-[400ms] ease-out group-hover:scale-105">
         {project.image ? (
@@ -47,6 +53,16 @@ export default function ProjectCard({
           <PosterFrame poster={project.poster} />
         ) : null}
       </div>
+
+      {/* cursor spotlight */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background:
+            "radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent-gold) 16%, transparent), transparent 65%)",
+        }}
+      />
 
       {/* status chip */}
       <span

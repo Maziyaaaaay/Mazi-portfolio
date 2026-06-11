@@ -2,7 +2,6 @@ import NavBar from "@/components/ui/NavBar";
 import HeroSection from "@/components/sections/HeroSection";
 import ManifestoSection from "@/components/sections/ManifestoSection";
 import WhatIDoSection from "@/components/sections/WhatIDoSection";
-import ToolStackSection from "@/components/sections/ToolStackSection";
 import WorkSection from "@/components/sections/WorkSection";
 import ConceptLabSection from "@/components/sections/ConceptLabSection";
 import AchievementsSection from "@/components/sections/AchievementsSection";
@@ -19,7 +18,6 @@ export default function Home() {
         <HeroSection />
         <ManifestoSection />
         <WhatIDoSection />
-        <ToolStackSection />
         <WorkSection />
         <ConceptLabSection />
         <AchievementsSection />
