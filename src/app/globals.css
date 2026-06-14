@@ -114,18 +114,6 @@ body::after {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Custom cursor — native cursor hidden only when JS has mounted      */
-/*  the replacement, and only on fine-pointer devices                  */
-/* ------------------------------------------------------------------ */
-
-@media (pointer: fine) {
-  html.has-custom-cursor,
-  html.has-custom-cursor * {
-    cursor: none !important;
-  }
-}
-
-/* ------------------------------------------------------------------ */
 /*  Ambient hero glow — slow-breathing depth, GPU-cheap                */
 /* ------------------------------------------------------------------ */
 

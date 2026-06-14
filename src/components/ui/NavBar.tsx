@@ -84,7 +84,7 @@ export default function NavBar() {
               href="#contact"
               className="hidden rounded-full border border-gold px-5 py-2 font-body text-xs font-medium uppercase tracking-[0.15em] text-gold transition-colors duration-300 hover:bg-gold hover:text-void sm:block"
             >
-              Start a Project
+              Let&apos;s Connect
             </a>
           </Magnetic>
 
@@ -143,7 +143,7 @@ export default function NavBar() {
                   onClick={() => setMenuOpen(false)}
                   className="inline-block rounded-full border border-gold px-8 py-3 font-body text-sm font-medium uppercase tracking-[0.15em] text-gold"
                 >
-                  Start a Project
+                  Let&apos;s Connect
                 </a>
               </motion.li>
             </ul>

@@ -3,7 +3,6 @@ import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import Providers from "@/components/Providers";
-import CustomCursor from "@/components/ui/CustomCursor";
 import { SITE } from "@/lib/constants";
 
 const bebas = localFont({
@@ -133,7 +132,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
         <Providers>{children}</Providers>
-        <CustomCursor />
       </body>
     </html>
   );
