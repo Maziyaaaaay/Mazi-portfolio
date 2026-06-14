@@ -37,8 +37,8 @@ export default function HeroSection() {
   // cursor-driven parallax: layers drift on a weighted spring
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 50, damping: 20, mass: 0.6 });
-  const sy = useSpring(my, { stiffness: 50, damping: 20, mass: 0.6 });
+  const sx = useSpring(mx, { stiffness: 220, damping: 26, mass: 0.4 });
+  const sy = useSpring(my, { stiffness: 220, damping: 26, mass: 0.4 });
   const stripX = useTransform(sx, (v) => v * -28);
   const stripY = useTransform(sy, (v) => v * -12);
   const photoX = useTransform(sx, (v) => v * 16);
@@ -74,6 +74,34 @@ export default function HeroSection() {
       className="relative flex min-h-dvh flex-col overflow-hidden"
       aria-label="Introduction"
     >
+      {/* Ambient breathing glow — depth behind everything */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+        <div
+          className="hero-aura"
+          style={{
+            left: "-10%",
+            top: "10%",
+            width: "55vw",
+            height: "55vw",
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--accent-gold) 30%, transparent), transparent 70%)",
+          }}
+        />
+        <div
+          className="hero-aura"
+          style={{
+            right: "-15%",
+            bottom: "0%",
+            width: "45vw",
+            height: "45vw",
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--accent-gold-dim) 22%, transparent), transparent 70%)",
+            animationDelay: "-8s",
+            animationDuration: "20s",
+          }}
+        />
+      </div>
+
       {/* Ambient filmstrip — context, not focus */}
       <motion.div
         style={{ x: stripX, y: stripY }}

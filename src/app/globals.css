@@ -126,6 +126,38 @@ body::after {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Ambient hero glow — slow-breathing depth, GPU-cheap                */
+/* ------------------------------------------------------------------ */
+
+@keyframes aura-drift {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(6%, 5%, 0) scale(1.15);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+    opacity: 0.5;
+  }
+}
+
+.hero-aura {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform, opacity;
+  animation: aura-drift 16s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-aura {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /*  Layout helpers                                                     */
 /* ------------------------------------------------------------------ */
 
