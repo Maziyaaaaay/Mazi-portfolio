@@ -105,12 +105,12 @@ export default function HeroSection() {
       {/* Ambient filmstrip — context, not focus */}
       <motion.div
         style={{ x: stripX, y: stripY }}
-        className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-40"
+        className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-[0.62]"
       >
         <FilmStrip />
       </motion.div>
-      {/* readability scrim over the strip */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void via-void/60 to-void/30" />
+      {/* readability scrim — dark enough behind the headline, clears on the right */}
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void from-10% via-void/55 to-void/10" />
 
       <div className="container-cine relative z-10 grid flex-1 items-center gap-12 pb-16 pt-28 lg:grid-cols-[1fr_auto] lg:gap-20 lg:pt-32">
         {/* ------------------------------------------------ text column */}
@@ -243,7 +243,7 @@ export default function HeroSection() {
               alt="Muhammed Mazin KP leaning against a black car, teal striped shirt, Kerala"
               fill
               sizes="(min-width: 1280px) 390px, 360px"
-              className="object-cover saturate-[0.85] contrast-105"
+              className="object-cover saturate-110 contrast-105"
               priority
             />
             {/* viewfinder overlay */}
@@ -295,7 +295,7 @@ export default function HeroSection() {
       <VideoModal
         open={reelOpen}
         src={HERO.reelVideo}
-        title="Showreel — HU Brand Film"
+        title={HERO.reelTitle}
         onClose={() => setReelOpen(false)}
       />
     </section>

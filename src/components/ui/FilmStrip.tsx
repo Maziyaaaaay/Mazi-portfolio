@@ -63,7 +63,7 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
                   alt={frame.alt}
                   fill
                   sizes="280px"
-                  className="object-cover saturate-[0.8]"
+                  className="object-cover"
                   priority={i === 0}
                 />
               ) : frame.poster ? (

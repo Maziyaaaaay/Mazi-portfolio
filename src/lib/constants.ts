@@ -50,7 +50,8 @@ export const HERO = {
   ],
   supporting:
     "Cinematic AI brand films for brands worldwide. Co-founder & CEO of AmpAware.",
-  reelVideo: "/uploads/films/hu.mp4",
+  reelVideo: "/uploads/films/nurena.mp4",
+  reelTitle: "Showreel — Nurena Wellness",
   stats: [
     "5+ Hackathon Wins",
     "6 Countries Visited",
@@ -61,54 +62,44 @@ export const HERO = {
 
 export const FILM_FRAMES: FilmFrame[] = [
   {
-    src: "/uploads/permute.jpg",
-    alt: "Dark stage with purple lighting at the Permute conclave in Kerala",
-    label: "PERMUTE · EVENT FILM",
-  },
-  {
     src: "/uploads/films/hu.jpg",
-    alt: "Frame from the HU brand identity film for Happy User, UAE",
+    alt: "Frame from the HU brand identity film — lime-green energy swirl, UAE",
     label: "HU · UAE",
   },
   {
-    src: "/uploads/aot.jpg",
-    alt: "Speaker on stage mid-gesture at a MuLearn event",
-    label: "ART OF TEACHING",
-  },
-  {
-    src: "/uploads/films/topad.jpg",
-    alt: "Frame from the TopAd exhibition commercial, Oman",
-    label: "TOPAD · OMAN",
-  },
-  {
-    src: "/uploads/calivista-screenshot.jpg",
-    alt: "Calivista city guide website over an aerial shot of Kozhikode beach",
-    label: "CALIVISTA · WEB",
+    src: "/uploads/films/rayban.jpg",
+    alt: "Macro frame from the Meta Ray-Ban concept film on a deep red set",
+    label: "META RAY-BAN · CONCEPT",
   },
   {
     src: "/uploads/films/coreve.jpg",
-    alt: "Frame from the Coreve sneaker launch film",
+    alt: "Studio frame of a sneaker from the Coreve launch film",
     label: "COREVE · LAUNCH",
   },
   {
     src: "/uploads/films/nurena.jpg",
-    alt: "Frame from the Nurena Mobile Wellness brand film",
+    alt: "Warm interior frame from the Nurena Mobile Wellness brand film",
     label: "NURENA · WELLNESS",
   },
   {
+    src: "/uploads/films/topad.jpg",
+    alt: "Industrial detail frame from the TopAd exhibition commercial, Oman",
+    label: "TOPAD · OMAN",
+  },
+  {
+    src: "/uploads/films/bluestone.jpg",
+    alt: "Gold pendant macro from the Bluestone jewelry spot",
+    label: "BLUESTONE · SPOT",
+  },
+  {
     src: "/uploads/films/ict.jpg",
-    alt: "Frame from the ICT Senior Secondary School campaign film",
+    alt: "Aerial campus frame from the ICT Senior Secondary School film",
     label: "ICT · CAMPAIGN",
   },
   {
-    alt: "Typographic frame for AmpAware smart energy startup",
-    label: "AMPAWARE · IOT",
-    poster: {
-      title: "AMPAWARE",
-      sub: "KNOW YOUR CURRENT",
-      gradient: "linear-gradient(135deg, #141408 0%, #0c0c06 60%, #050505 100%)",
-      accent: "#e6d27a",
-    },
+    src: "/uploads/films/lenskart.jpg",
+    alt: "Character frame from the Lenskart spoof spec ad",
+    label: "LENSKART · SPEC",
   },
 ];
 
