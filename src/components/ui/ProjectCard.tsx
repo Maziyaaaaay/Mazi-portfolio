@@ -31,7 +31,6 @@ export default function ProjectCard({
   const media = (
     <div
       className={`group relative w-full overflow-hidden rounded-sm border border-line bg-surface ${aspectClass}`}
-      data-cursor={hasVideo ? "play" : undefined}
       onMouseMove={(e) => {
         const el = e.currentTarget;
         const r = el.getBoundingClientRect();

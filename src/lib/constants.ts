@@ -15,7 +15,7 @@ import type {
 export const SITE = {
   name: "Muhammed Mazin KP",
   shortName: "Mazin KP",
-  url: "https://mazinkp.in",
+  url: "https://www.mazinkp.in",
   title: "Muhammed Mazin KP — AI Content Architect, Educator & Founder",
   description:
     "AI Content Architect producing cinematic AI brand films for clients worldwide. Co-founder & CEO of AmpAware. 5x Hackathon Winner from Kerala, India.",
@@ -30,7 +30,7 @@ export const SITE = {
 export const NAV_LINKS: NavLink[] = [
   { label: "Work", href: "#work" },
   { label: "Teaching", href: "#teaching" },
-  { label: "Startup", href: "#work", filter: "startup" },
+  { label: "Startup", href: "#startup" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];

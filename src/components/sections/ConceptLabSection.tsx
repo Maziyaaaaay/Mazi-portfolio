@@ -56,7 +56,6 @@ export default function ConceptLabSection() {
                 }
                 aria-label={`Play video: ${concept.title}`}
                 className="group relative block aspect-[9/14] w-full overflow-hidden rounded-sm border border-line bg-void text-left"
-                data-cursor="play"
               >
                 <div className="absolute inset-0 transition-transform duration-[400ms] ease-out group-hover:scale-105">
                   <Image
