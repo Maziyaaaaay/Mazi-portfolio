@@ -9,8 +9,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { SERVICES } from "@/lib/constants";
-import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
+import { fadeUp, staggerChildren } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 const ICONS: Record<string, LucideIcon> = {
   clapperboard: Clapperboard,
@@ -25,15 +26,10 @@ export default function WhatIDoSection() {
       <div className="container-cine section-pad">
         <SectionLabel>Services</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text="FOUR THINGS I DO"
           className="mt-6 font-display text-[clamp(48px,7vw,96px)] leading-none text-cream"
-        >
-          FOUR THINGS I DO
-        </motion.h2>
+        />
 
         <motion.div
           variants={staggerChildren}
@@ -48,9 +44,10 @@ export default function WhatIDoSection() {
               <motion.article
                 key={service.id}
                 variants={fadeUp}
-                className="group rounded-sm border border-line bg-surface p-8 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30 md:p-10"
+                className="group glass rounded-md p-8 transition-transform duration-300 hover:-translate-y-1 md:p-10"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold/10 text-gold shadow-[0_0_24px_rgba(200,169,110,0.18)]">
+                <span className="glass-sheen" aria-hidden />
+                <div className="flex h-10 w-10 items-center justify-center rounded-sm bg-gold/10 text-gold shadow-[0_0_24px_color-mix(in_srgb,var(--accent)_20%,transparent)]">
                   <Icon size={20} aria-hidden />
                 </div>
                 <h3 className="mt-7 font-display text-[28px] leading-none tracking-wide text-cream">

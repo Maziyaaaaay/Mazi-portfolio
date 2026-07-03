@@ -6,49 +6,92 @@
 
 :root {
   color-scheme: dark;
-  --bg-void: #080808;
-  --bg-surface: #111111;
-  --bg-elevated: #1c1c1c;
-  --accent-gold: #c8a96e;
-  --accent-gold-dim: #9a7b47;
-  --text-primary: #f2ede8;
-  --text-secondary: #8a8580;
-  --text-tertiary: #4a4540;
-  --border-subtle: rgba(242, 237, 232, 0.06);
-  --nav-bg: rgba(8, 8, 8, 0.85);
-  --grain-opacity: 0.04;
+  --bg-void: #070708;
+  --bg-surface: rgba(244, 246, 236, 0.03);
+  --bg-elevated: rgba(244, 246, 236, 0.08);
+  /* accent system — volt lime primary, electric cyan + ember washes */
+  --accent: #c8f135;
+  --accent-dim: #97c11f;
+  --accent-2: #45e3ff;
+  --accent-3: #ff6b3d;
+  --text-primary: #f2f4ec;
+  --text-secondary: #a0a69a;
+  --text-tertiary: #5b6054;
+  --border-subtle: rgba(242, 244, 236, 0.08);
+  --nav-bg: rgba(7, 7, 8, 0.7);
+  --grain-opacity: 0.05;
+  /* aurora washes */
+  --aurora-1: rgba(200, 241, 53, 0.13);
+  --aurora-2: rgba(69, 227, 255, 0.1);
+  --aurora-3: rgba(255, 107, 61, 0.09);
+  /* glass surface */
+  --glass-fill: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.07),
+    rgba(255, 255, 255, 0.02) 60%
+  );
+  --glass-stroke: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.32),
+    rgba(255, 255, 255, 0.07) 45%,
+    rgba(255, 255, 255, 0.02)
+  );
+  --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --glass-sheen: rgba(255, 255, 255, 0.09);
 }
 
-/* Light theme — warm gallery paper, same gold spine. Toggled by
+/* Light theme — cool gallery paper, same volt spine. Toggled by
    ThemeToggle via a class on <html>, persisted in localStorage. */
 html.light {
   color-scheme: light;
-  --bg-void: #f4f0e8;
-  --bg-surface: #ece6da;
-  --bg-elevated: #e2d9c8;
-  --accent-gold: #8a6a35;
-  --accent-gold-dim: #a98b52;
-  --text-primary: #221c14;
-  --text-secondary: #5f574a;
-  --text-tertiary: #978d7c;
-  --border-subtle: rgba(34, 28, 20, 0.1);
-  --nav-bg: rgba(244, 240, 232, 0.85);
+  --bg-void: #f4f6ee;
+  --bg-surface: rgba(23, 26, 18, 0.05);
+  --bg-elevated: rgba(23, 26, 18, 0.1);
+  --accent: #4e7d0a;
+  --accent-dim: #6d9b23;
+  --accent-2: #0891b2;
+  --accent-3: #e0491f;
+  --text-primary: #191c13;
+  --text-secondary: #4f574a;
+  --text-tertiary: #8f958a;
+  --border-subtle: rgba(25, 28, 19, 0.12);
+  --nav-bg: rgba(244, 246, 238, 0.7);
   --grain-opacity: 0.05;
+  --aurora-1: rgba(190, 242, 100, 0.32);
+  --aurora-2: rgba(165, 243, 252, 0.3);
+  --aurora-3: rgba(254, 215, 170, 0.28);
+  --glass-fill: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.62),
+    rgba(255, 255, 255, 0.26)
+  );
+  --glass-stroke: linear-gradient(
+    155deg,
+    rgba(23, 26, 18, 0.22),
+    rgba(23, 26, 18, 0.06) 45%,
+    rgba(23, 26, 18, 0.02)
+  );
+  --glass-shadow: 0 24px 50px rgba(23, 26, 18, 0.12);
+  --glass-sheen: rgba(255, 255, 255, 0.4);
 }
 
 @theme inline {
   --color-void: var(--bg-void);
   --color-surface: var(--bg-surface);
   --color-elevated: var(--bg-elevated);
-  --color-gold: var(--accent-gold);
-  --color-gold-dim: var(--accent-gold-dim);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
+  /* legacy aliases — pre-volt components use gold utilities */
+  --color-gold: var(--accent);
+  --color-gold-dim: var(--accent-dim);
   --color-cream: var(--text-primary);
   --color-muted: var(--text-secondary);
   --color-faint: var(--text-tertiary);
   --color-line: var(--border-subtle);
 
-  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
-  --font-body: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-body: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
 
   --ease-cine: cubic-bezier(0.76, 0, 0.24, 1);
@@ -61,6 +104,21 @@ html.light {
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+}
+
+/* Lenis smooth scroll (rules from lenis/dist/lenis.css) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 /* anchored sections clear the fixed nav */
@@ -79,9 +137,15 @@ body {
     color 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
+/* Archivo is variable — the display voice is heavy and condensed. */
+.font-display {
+  font-weight: 800;
+  font-stretch: 64%;
+}
+
 ::selection {
-  background-color: var(--accent-gold);
-  color: var(--bg-void);
+  background-color: var(--accent);
+  color: #070708;
 }
 
 ::-webkit-scrollbar {
@@ -95,11 +159,11 @@ body {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-gold-dim);
+  background: var(--accent-dim);
 }
 
 /* ------------------------------------------------------------------ */
-/*  Film grain overlay — the cinematic texture layer                   */
+/*  Film grain + scanlines — the cinematic texture layer               */
 /* ------------------------------------------------------------------ */
 
 body::after {
@@ -109,8 +173,78 @@ body::after {
   z-index: 90;
   pointer-events: none;
   opacity: var(--grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.55) 0 1px,
+      transparent 1px 3px
+    );
   background-repeat: repeat;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Aurora — slow-drifting gradient washes behind everything           */
+/* ------------------------------------------------------------------ */
+
+@keyframes blob-drift {
+  0% {
+    transform: translate3d(-4%, -3%, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(5%, 4%, 0) scale(1.18) rotate(12deg);
+  }
+  100% {
+    transform: translate3d(-3%, 2%, 0) scale(0.95) rotate(-8deg);
+  }
+}
+
+.aurora-blob {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  will-change: transform;
+  animation: blob-drift 38s ease-in-out infinite alternate;
+}
+.aurora-blob-1 {
+  width: 62vw;
+  left: -12%;
+  top: -8%;
+  background: radial-gradient(circle, var(--aurora-1), transparent 66%);
+}
+.aurora-blob-2 {
+  width: 52vw;
+  right: -14%;
+  top: 22%;
+  background: radial-gradient(circle, var(--aurora-2), transparent 66%);
+  animation-duration: 46s;
+  animation-delay: -14s;
+}
+.aurora-blob-3 {
+  width: 44vw;
+  left: 28%;
+  bottom: -14%;
+  background: radial-gradient(circle, var(--aurora-3), transparent 66%);
+  animation-duration: 54s;
+  animation-delay: -27s;
+}
+
+@keyframes orb-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(3vw, -4vh, 0);
+  }
+  100% {
+    transform: translate3d(-2vw, 3vh, 0);
+  }
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+  animation: orb-drift 22s ease-in-out infinite alternate;
 }
 
 /* ------------------------------------------------------------------ */
@@ -142,6 +276,80 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .hero-aura {
     animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Glass system — one surface language everywhere                     */
+/* ------------------------------------------------------------------ */
+
+.glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-image: var(--glass-fill);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: var(--glass-shadow);
+}
+/* gradient hairline border */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glass-stroke);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+/* specular top highlight */
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 36%;
+  border-radius: inherit;
+  background: linear-gradient(rgba(255, 255, 255, 0.06), transparent);
+  pointer-events: none;
+}
+.glass-light {
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: none;
+}
+.glass-heavy {
+  backdrop-filter: blur(26px) saturate(160%);
+  -webkit-backdrop-filter: blur(26px) saturate(160%);
+}
+/* specular streak that sweeps across on hover */
+.glass-sheen {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: -35%;
+  width: 34%;
+  transform: skewX(-18deg) translateX(-130%);
+  background: linear-gradient(90deg, transparent, var(--glass-sheen), transparent);
+  transition: transform 0.9s var(--ease-cine);
+  pointer-events: none;
+}
+.glass:hover > .glass-sheen {
+  transform: skewX(-18deg) translateX(480%);
+}
+/* lighter blur on small screens — keep the vibe, spare the GPU */
+@media (max-width: 767px) {
+  .glass {
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+  }
+  .glass-heavy {
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
   }
 }
 

@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { TRAVEL } from "@/lib/constants";
 import { asset } from "@/lib/asset";
 import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
+import Parallax from "@/components/motion/Parallax";
 
 const FRAME_TILTS = [-1.5, 1.2, -1, 1.6];
+const FRAME_SPEEDS = [0.22, -0.12, 0.16, -0.2];
 
 /**
  * Interstitial band — a breath of personal identity between the
@@ -34,13 +36,13 @@ export default function TravelSection() {
         <path
           d="M 120 250 Q 400 60 720 190 T 1300 120"
           fill="none"
-          style={{ stroke: "var(--accent-gold)" }}
+          style={{ stroke: "var(--accent)" }}
           strokeWidth="1.5"
           strokeDasharray="6 8"
         />
-        <circle cx="120" cy="250" r="4" style={{ fill: "var(--accent-gold)" }} />
-        <circle cx="720" cy="190" r="4" style={{ fill: "var(--accent-gold)" }} />
-        <circle cx="1300" cy="120" r="4" style={{ fill: "var(--accent-gold)" }} />
+        <circle cx="120" cy="250" r="4" style={{ fill: "var(--accent)" }} />
+        <circle cx="720" cy="190" r="4" style={{ fill: "var(--accent)" }} />
+        <circle cx="1300" cy="120" r="4" style={{ fill: "var(--accent)" }} />
       </svg>
 
       <div className="container-cine relative py-20 md:py-24">
@@ -70,8 +72,11 @@ export default function TravelSection() {
         {/* photo strip — film frames from the road */}
         <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-5">
           {TRAVEL.photos.map((photo, i) => (
-            <motion.figure
+            <Parallax
               key={photo.src}
+              speed={FRAME_SPEEDS[i % FRAME_SPEEDS.length]}
+            >
+            <motion.figure
               initial={{ opacity: 0, y: 32, rotate: 0 }}
               whileInView={{
                 opacity: 1,
@@ -98,6 +103,7 @@ export default function TravelSection() {
                 {photo.caption}
               </figcaption>
             </motion.figure>
+            </Parallax>
           ))}
         </div>
       </div>

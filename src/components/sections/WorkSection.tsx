@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PROJECTS, WORK_FILTERS } from "@/lib/constants";
-import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
+import { EASE_CINE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ProjectCard from "@/components/ui/ProjectCard";
 import VideoModal from "@/components/ui/VideoModal";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 type FilterId = (typeof WORK_FILTERS)[number]["id"];
 
@@ -49,15 +50,10 @@ export default function WorkSection() {
       <div className="container-cine section-pad">
         <SectionLabel>Portfolio</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text="SELECTED WORK"
           className="mt-6 font-display text-[clamp(56px,9vw,120px)] leading-none text-cream"
-        >
-          SELECTED WORK
-        </motion.h2>
+        />
 
         {/* filter tabs */}
         <div

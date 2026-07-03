@@ -5,6 +5,7 @@ import { PROJECTS, SERVICES } from "@/lib/constants";
 import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ProjectCard from "@/components/ui/ProjectCard";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 const STARTUP_PROJECTS = PROJECTS.filter((p) => p.category === "startup");
 const STARTUP_SERVICE = SERVICES.find((s) => s.id === "startup-building");
@@ -21,15 +22,10 @@ export default function StartupSection() {
       <div className="container-cine section-pad">
         <SectionLabel>Founder</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text="STARTUP BUILDING"
           className="mt-6 font-display text-[clamp(48px,7vw,96px)] leading-none text-cream"
-        >
-          STARTUP BUILDING
-        </motion.h2>
+        />
 
         {STARTUP_SERVICE && (
           <motion.p

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import { ACHIEVEMENTS } from "@/lib/constants";
-import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
+import { EASE_CINE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 export default function AchievementsSection() {
   return (
@@ -11,15 +12,10 @@ export default function AchievementsSection() {
       <div className="container-cine section-pad">
         <SectionLabel>Recognition</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text="EARNED, NOT CLAIMED"
           className="mt-6 font-display text-[clamp(48px,7vw,96px)] leading-none text-cream"
-        >
-          EARNED, NOT CLAIMED
-        </motion.h2>
+        />
 
         <ol className="relative mt-16 space-y-4 border-l border-line pl-8 md:pl-12">
           {ACHIEVEMENTS.map((item, i) => (

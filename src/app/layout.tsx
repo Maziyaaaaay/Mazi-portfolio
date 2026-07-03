@@ -1,20 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import localFont from "next/font/local";
+import {
+  Archivo,
+  Bricolage_Grotesque,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import Aurora from "@/components/motion/Aurora";
 import { SITE } from "@/lib/constants";
 
-const bebas = localFont({
-  src: "../../public/Bebas_Neue/BebasNeue-Regular.ttf",
-  variable: "--font-bebas",
+// Variable font (wght + wdth) — the display voice is condensed black,
+// and the axes stay animatable for kinetic type.
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  axes: ["wdth"],
   display: "swap",
   preload: true,
 });
 
-const grotesk = Space_Grotesk({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-grotesk",
+  variable: "--font-bricolage",
   display: "swap",
   preload: true,
 });
@@ -116,7 +123,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebas.variable} ${grotesk.variable} ${jetbrains.variable}`}
+      className={`${archivo.variable} ${bricolage.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
       <body>
@@ -131,7 +138,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
-        <Providers>{children}</Providers>
+        <Providers>
+          <Aurora />
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { TEACHING } from "@/lib/constants";
 import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 export default function TeachingSection() {
   return (
@@ -15,15 +16,10 @@ export default function TeachingSection() {
         <div className="mt-6 grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           {/* left — narrative */}
           <div>
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={VIEWPORT_ONCE}
+            <SplitReveal
+              text={TEACHING.heading}
               className="font-display text-[clamp(44px,6vw,84px)] leading-[0.95] text-cream"
-            >
-              {TEACHING.heading}
-            </motion.h2>
+            />
 
             <motion.p
               variants={fadeUp}
@@ -69,7 +65,8 @@ export default function TeachingSection() {
               className="absolute -inset-6 rounded-full bg-gold/5 blur-2xl"
               aria-hidden
             />
-            <div className="relative rounded-sm border border-gold/30 bg-void p-10 shadow-[0_0_60px_rgba(200,169,110,0.08)]">
+            <div className="glass glass-heavy relative rounded-md p-10">
+              <span className="glass-sheen" aria-hidden />
               <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-faint">
                 {TEACHING.coursePlatform} · Course
               </p>

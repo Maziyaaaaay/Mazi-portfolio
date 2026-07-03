@@ -15,7 +15,8 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <main id="top">
+      {/* z-10 keeps content above the fixed Aurora backdrop (z-0) */}
+      <main id="top" className="relative z-10">
         <HeroSection />
         <ManifestoSection />
         <WhatIDoSection />

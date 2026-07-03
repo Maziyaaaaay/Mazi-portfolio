@@ -9,6 +9,7 @@ import { asset } from "@/lib/asset";
 import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import VideoModal from "@/components/ui/VideoModal";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 export default function ConceptLabSection() {
   const [playing, setPlaying] = useState<{ src: string; title: string } | null>(
@@ -20,15 +21,10 @@ export default function ConceptLabSection() {
       <div className="container-cine section-pad">
         <SectionLabel>{CONCEPT_LAB.eyebrow}</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text={CONCEPT_LAB.heading}
           className="mt-6 font-display text-[clamp(44px,6vw,84px)] leading-none text-cream"
-        >
-          {CONCEPT_LAB.heading}
-        </motion.h2>
+        />
 
         <motion.p
           variants={fadeUp}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { FILM_FRAMES } from "@/lib/constants";
 import { asset } from "@/lib/asset";
+import { useLenis } from "@/components/motion/SmoothScroll";
 import PosterFrame from "@/components/ui/PosterFrame";
 
 const FRAME_HEIGHTS = [200, 230, 184, 216, 196, 224, 188, 210];
@@ -12,6 +13,8 @@ const FRAME_TILTS = [-1.5, 1, -0.6, 1.8, -1.2, 0.8, -1.8, 1.4];
 
 export default function FilmStrip({ className = "" }: { className?: string }) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const lenis = useLenis();
 
   useEffect(() => {
     const track = trackRef.current;
@@ -24,6 +27,7 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
       ease: "none",
       repeat: -1,
     });
+    tweenRef.current = tween;
 
     const pause = () => tween.pause();
     const resume = () => tween.resume();
@@ -34,8 +38,37 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
       track.removeEventListener("mouseenter", pause);
       track.removeEventListener("mouseleave", resume);
       tween.kill();
+      tweenRef.current = null;
     };
   }, []);
+
+  // scroll-velocity reactivity: fast scrolling speeds the marquee up
+  // (or reverses it upward) and skews the strip with momentum
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!lenis || !track) return;
+
+    const wrapper = track.parentElement as HTMLElement;
+    const skewTo = gsap.quickTo(wrapper, "skewX", {
+      duration: 0.35,
+      ease: "power2.out",
+    });
+
+    const onScroll = ({ velocity }: { velocity: number }) => {
+      const v = gsap.utils.clamp(-30, 30, velocity);
+      tweenRef.current?.timeScale(
+        gsap.utils.clamp(-4, 5, 1 + v * 0.18)
+      );
+      skewTo(gsap.utils.clamp(-8, 8, v * 0.3));
+    };
+    lenis.on("scroll", onScroll);
+
+    return () => {
+      lenis.off("scroll", onScroll);
+      skewTo(0);
+      tweenRef.current?.timeScale(1);
+    };
+  }, [lenis]);
 
   // Two copies of the sequence make the -50% loop seamless.
   const sequence = [...FILM_FRAMES, ...FILM_FRAMES];

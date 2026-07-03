@@ -5,6 +5,7 @@ import { Linkedin, Mail, Phone } from "lucide-react";
 import { CONTACT, SITE } from "@/lib/constants";
 import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
+import SplitReveal from "@/components/motion/SplitReveal";
 
 const CONTACT_BLOCKS = [
   {
@@ -36,16 +37,10 @@ export default function ContactSection() {
       <div className="container-cine section-pad">
         <SectionLabel>{CONTACT.eyebrow}</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text="READY WHEN YOU ARE."
           className="mt-6 font-display text-[clamp(56px,9vw,120px)] leading-none text-cream"
-        >
-          READY WHEN YOU ARE
-          <span className="text-gold">.</span>
-        </motion.h2>
+        />
 
         <motion.div
           variants={staggerChildren}
@@ -62,8 +57,9 @@ export default function ContactSection() {
               {...(block.external
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
-              className="group flex items-center gap-5 rounded-sm border border-line bg-surface px-7 py-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/30"
+              className="group glass flex items-center gap-5 rounded-md px-7 py-6 transition-transform duration-300 hover:-translate-y-1"
             >
+              <span className="glass-sheen" aria-hidden />
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-gold/10 text-gold">
                 <block.icon size={18} aria-hidden />
               </span>

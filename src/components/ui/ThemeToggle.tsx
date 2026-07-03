@@ -31,9 +31,9 @@ export default function ThemeToggle() {
       role="switch"
       aria-checked={light}
       aria-label={light ? "Switch to dark theme" : "Switch to light theme"}
-      className="group relative h-8 w-[60px] overflow-hidden rounded-full border border-[color-mix(in_srgb,var(--accent-gold)_35%,transparent)] transition-colors duration-300"
+      className="group relative h-8 w-[60px] overflow-hidden rounded-full border border-[color-mix(in_srgb,var(--accent)_35%,transparent)] transition-colors duration-300"
       style={{
-        backgroundColor: "color-mix(in srgb, var(--accent-gold) 8%, transparent)",
+        backgroundColor: "color-mix(in srgb, var(--accent) 8%, transparent)",
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
         boxShadow:
@@ -62,7 +62,7 @@ export default function ThemeToggle() {
         style={{
           left: 0,
           background:
-            "linear-gradient(145deg, color-mix(in srgb, var(--accent-gold) 90%, white), var(--accent-gold-dim))",
+            "linear-gradient(145deg, color-mix(in srgb, var(--accent) 90%, white), var(--accent-dim))",
           boxShadow:
             "0 2px 6px rgba(0,0,0,0.35), inset 0 1px 1px rgba(255,255,255,0.4)",
         }}
