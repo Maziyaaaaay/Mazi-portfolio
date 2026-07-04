@@ -1,10 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
+import type { Project } from "@/types";
 import { PROJECTS, SERVICES } from "@/lib/constants";
 import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ProjectCard from "@/components/ui/ProjectCard";
+import CaseStudyModal from "@/components/ui/CaseStudyModal";
 import SplitReveal from "@/components/motion/SplitReveal";
 
 const STARTUP_PROJECTS = PROJECTS.filter((p) => p.category === "startup");
@@ -17,6 +20,8 @@ const ASPECTS: Record<string, string> = {
 };
 
 export default function StartupSection() {
+  const [openProject, setOpenProject] = useState<Project | null>(null);
+
   return (
     <section id="startup" aria-label="Startup building">
       <div className="container-cine section-pad">
@@ -51,11 +56,17 @@ export default function StartupSection() {
               <ProjectCard
                 project={project}
                 aspectClass={ASPECTS[project.id] ?? "aspect-[4/3]"}
+                onOpen={setOpenProject}
               />
             </motion.article>
           ))}
         </motion.div>
       </div>
+
+      <CaseStudyModal
+        project={openProject}
+        onClose={() => setOpenProject(null)}
+      />
     </section>
   );
 }

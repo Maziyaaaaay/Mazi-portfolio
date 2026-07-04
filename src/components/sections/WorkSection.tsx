@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import type { Project } from "@/types";
 import { PROJECTS, WORK_FILTERS } from "@/lib/constants";
 import { EASE_CINE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ProjectCard from "@/components/ui/ProjectCard";
-import VideoModal from "@/components/ui/VideoModal";
+import CaseStudyModal from "@/components/ui/CaseStudyModal";
 import SplitReveal from "@/components/motion/SplitReveal";
 
 type FilterId = (typeof WORK_FILTERS)[number]["id"];
@@ -26,9 +27,7 @@ const ASPECTS: Record<string, string> = {
 
 export default function WorkSection() {
   const [filter, setFilter] = useState<FilterId>("all");
-  const [playing, setPlaying] = useState<{ src: string; title: string } | null>(
-    null
-  );
+  const [openProject, setOpenProject] = useState<Project | null>(null);
 
   useEffect(() => {
     const onFilter = (e: Event) => {
@@ -100,7 +99,7 @@ export default function WorkSection() {
                 <ProjectCard
                   project={project}
                   aspectClass={ASPECTS[project.id] ?? "aspect-[4/3]"}
-                  onPlay={(src, title) => setPlaying({ src, title })}
+                  onOpen={setOpenProject}
                 />
               </motion.article>
             ))}
@@ -108,11 +107,9 @@ export default function WorkSection() {
         </motion.div>
       </div>
 
-      <VideoModal
-        open={Boolean(playing)}
-        src={playing?.src ?? null}
-        title={playing?.title}
-        onClose={() => setPlaying(null)}
+      <CaseStudyModal
+        project={openProject}
+        onClose={() => setOpenProject(null)}
       />
     </section>
   );

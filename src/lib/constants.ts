@@ -184,6 +184,9 @@ export const WORK_FILTERS = [
   { id: "startup", label: "STARTUP" },
 ] as const;
 
+/** The documented house pipeline for AI brand films (see SERVICES). */
+const FILM_PIPELINE = "Kling 3.0 · Veo 3.1 · Seedance 2.0 · ElevenLabs · CapCut";
+
 export const PROJECTS: Project[] = [
   {
     id: "hu",
@@ -197,7 +200,15 @@ export const PROJECTS: Project[] = [
     featured: true,
     image: "/uploads/films/hu.jpg",
     imageAlt: "Frame from the HU brand identity film for Happy User, UAE",
-    video: "/uploads/films/hu.mp4",
+    video: { kind: "file", src: "/uploads/films/hu.mp4" },
+    caseStudy: {
+      brief:
+        "Give Happy User, a UAE lifestyle electronics brand, a full brand identity and a product commercial in one pass — lime green × forest dark green × cinematic black.",
+      pipeline: FILM_PIPELINE,
+      // TODO(Mazin): approach — how the look was developed for HU
+      // TODO(Mazin): outcome — results/reception after delivery
+      // TODO(Mazin): credits — anyone besides you on this film?
+    },
   },
   {
     id: "topad",
@@ -209,7 +220,13 @@ export const PROJECTS: Project[] = [
     status: "DELIVERED",
     image: "/uploads/films/topad.jpg",
     imageAlt: "Frame from the TopAd exhibition commercial, Oman",
-    video: "/uploads/films/topad.mp4",
+    video: { kind: "file", src: "/uploads/films/topad.mp4" },
+    caseStudy: {
+      brief:
+        "A brand film for Oman's leading exhibition company — scale, prestige, and event excellence, produced entirely with generative AI.",
+      pipeline: FILM_PIPELINE,
+      // TODO(Mazin): approach / outcome / credits
+    },
   },
   {
     id: "coreve",
@@ -221,7 +238,13 @@ export const PROJECTS: Project[] = [
     status: "DELIVERED",
     image: "/uploads/films/coreve.jpg",
     imageAlt: "Frame from the Coreve sneaker launch film",
-    video: "/uploads/films/coreve.mp4",
+    video: { kind: "file", src: "/uploads/films/coreve.mp4" },
+    caseStudy: {
+      brief:
+        "Launch film for a D2C sneaker brand designed for abaya-wearing women — cultural precision meets modern aesthetics.",
+      pipeline: FILM_PIPELINE,
+      // TODO(Mazin): approach / outcome / credits
+    },
   },
   {
     id: "nurena",
@@ -233,7 +256,13 @@ export const PROJECTS: Project[] = [
     status: "DELIVERED",
     image: "/uploads/films/nurena.jpg",
     imageAlt: "Frame from the Nurena Mobile Wellness brand film",
-    video: "/uploads/films/nurena.mp4",
+    video: { kind: "file", src: "/uploads/films/nurena.mp4" },
+    caseStudy: {
+      brief:
+        "Brand film for Nurena Mobile Wellness — calm, clinical confidence rendered with generative AI.",
+      pipeline: FILM_PIPELINE,
+      // TODO(Mazin): approach / outcome / credits
+    },
   },
   {
     id: "ict",
@@ -245,7 +274,13 @@ export const PROJECTS: Project[] = [
     status: "DELIVERED",
     image: "/uploads/films/ict.jpg",
     imageAlt: "Frame from the ICT Senior Secondary School campaign film",
-    video: "/uploads/films/ict.mp4",
+    video: { kind: "file", src: "/uploads/films/ict.mp4" },
+    caseStudy: {
+      brief:
+        "Campaign film for ICT Senior Secondary School — institutional storytelling with cinematic AI production.",
+      pipeline: FILM_PIPELINE,
+      // TODO(Mazin): approach / outcome / credits
+    },
   },
   {
     id: "ampaware",
@@ -256,6 +291,12 @@ export const PROJECTS: Project[] = [
       "Smart electricity monitoring system for Kerala households. Real-time energy intelligence for everyday homes.",
     status: "IN DEVELOPMENT",
     award: "2nd Prize — Sahakiran Energy Ideathon",
+    caseStudy: {
+      brief:
+        "Smart electricity monitoring for Kerala households — real-time energy intelligence for everyday homes. Co-founded and led as CEO.",
+      pipeline: "IoT · AI · Next.js · Supabase",
+      // TODO(Mazin): approach / outcome (pilot numbers when shareable)
+    },
     poster: {
       title: "AMPAWARE",
       sub: "KNOW YOUR CURRENT",
@@ -271,6 +312,11 @@ export const PROJECTS: Project[] = [
     description:
       "Trip expense splitting app. Next.js 15 + Supabase. Complete UI designed with warm dark luxury glassmorphism.",
     status: "IN DEVELOPMENT",
+    caseStudy: {
+      brief:
+        "Trip expense splitting app with a complete UI designed in warm dark luxury glassmorphism.",
+      pipeline: "Next.js 15 · Supabase",
+    },
     poster: {
       title: "TRIPSPLIT",
       sub: "SPLIT FAIR. TRAVEL FAR.",
@@ -287,6 +333,11 @@ export const PROJECTS: Project[] = [
       "All-in-one Kozhikode city guide. National hackathon winner.",
     status: "LIVE",
     award: "2nd Prize — Build for Kozhikode",
+    caseStudy: {
+      brief:
+        "All-in-one city guide for Kozhikode, built for the Build for Kozhikode national hackathon — took 2nd prize and shipped live.",
+      // TODO(Mazin): approach / outcome (usage numbers if any)
+    },
     link: "https://cali-vista.vercel.app/",
     image: "/uploads/calivista-screenshot.jpg",
     imageAlt:
@@ -301,7 +352,11 @@ export const PROJECTS: Project[] = [
     status: "ARCHIVE",
     image: "/uploads/aot.jpg",
     imageAlt: "Speaker on stage mid-gesture at a MuLearn Foundation event",
-    video: "/uploads/aot.mp4",
+    video: { kind: "file", src: "/uploads/aot.mp4" },
+    caseStudy: {
+      brief:
+        "Early video production work with the MuLearn Foundation — where the editing instincts behind the AI films were built.",
+    },
   },
 ];
 
