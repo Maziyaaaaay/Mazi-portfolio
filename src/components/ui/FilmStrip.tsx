@@ -7,11 +7,21 @@ import { FILM_FRAMES } from "@/lib/constants";
 import { asset } from "@/lib/asset";
 import { blurProps } from "@/lib/blur";
 import { useLenis } from "@/components/motion/SmoothScroll";
-import PosterFrame from "@/components/ui/PosterFrame";
 
-const FRAME_HEIGHTS = [200, 230, 184, 216, 196, 224, 188, 210];
-const FRAME_TILTS = [-1.5, 1, -0.6, 1.8, -1.2, 0.8, -1.8, 1.4];
+/* Varied panel geometry — a rhythm, not a grid. Widths/heights in px,
+   float timing staggered so no two frames breathe in sync. */
+const FRAME_W = [560, 400, 420, 500, 400, 460];
+const FRAME_H = [320, 360, 350, 310, 360, 330];
+const FLOAT_DUR = [9, 11, 8, 12, 10, 9.5];
+const FLOAT_DELAY = [0, -4, -2, -7, -5, -3];
 
+/**
+ * The hero film flow: frames melt into the void through feathered
+ * gradient masks, overlap and cross-blend, breathe on their own, and
+ * carry a flowing volt/cyan/ember wash — projected light, not a
+ * contact sheet. The stream drifts continuously (GSAP loop) and
+ * reacts to scroll velocity (speed/reverse + momentum skew).
+ */
 export default function FilmStrip({ className = "" }: { className?: string }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const tweenRef = useRef<gsap.core.Tween | null>(null);
@@ -24,7 +34,7 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
 
     const tween = gsap.to(track, {
       xPercent: -50,
-      duration: 80,
+      duration: 70,
       ease: "none",
       repeat: -1,
     });
@@ -43,8 +53,8 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
     };
   }, []);
 
-  // scroll-velocity reactivity: fast scrolling speeds the marquee up
-  // (or reverses it upward) and skews the strip with momentum
+  // scroll-velocity reactivity: fast scrolling speeds the flow up
+  // (or reverses it upward) and skews the stream with momentum
   useEffect(() => {
     const track = trackRef.current;
     if (!lenis || !track) return;
@@ -57,9 +67,7 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
 
     const onScroll = ({ velocity }: { velocity: number }) => {
       const v = gsap.utils.clamp(-30, 30, velocity);
-      tweenRef.current?.timeScale(
-        gsap.utils.clamp(-4, 5, 1 + v * 0.18)
-      );
+      tweenRef.current?.timeScale(gsap.utils.clamp(-4, 5, 1 + v * 0.18));
       skewTo(gsap.utils.clamp(-8, 8, v * 0.3));
     };
     lenis.on("scroll", onScroll);
@@ -76,42 +84,46 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
 
   return (
     <div className={`relative w-full overflow-hidden ${className}`}>
-      <div ref={trackRef} className="flex w-max items-center gap-6 py-4">
+      <div ref={trackRef} className="flex w-max items-center py-6">
         {sequence.map((frame, i) => {
-          const h = FRAME_HEIGHTS[i % FRAME_HEIGHTS.length];
-          const tilt = FRAME_TILTS[i % FRAME_TILTS.length];
+          const k = i % FILM_FRAMES.length;
           return (
-            <figure
+            <div
               key={`${frame.label}-${i}`}
-              className="relative shrink-0 overflow-hidden rounded-sm border border-line bg-surface"
+              className="flow-frame relative shrink-0"
               style={{
-                width: 280,
-                height: h,
-                transform: `rotate(${tilt}deg)`,
+                width: FRAME_W[k],
+                height: FRAME_H[k],
+                marginLeft: i === 0 ? 0 : -72,
               }}
               aria-hidden={i >= FILM_FRAMES.length}
             >
-              {frame.src ? (
-                <Image
-                  src={asset(frame.src)}
-                  {...blurProps(frame.src)}
-                  alt={frame.alt}
-                  fill
-                  sizes="280px"
-                  className="object-cover"
-                  priority={i === 0}
-                />
-              ) : frame.poster ? (
-                <PosterFrame poster={frame.poster} />
-              ) : null}
-              <figcaption className="absolute bottom-2 left-3 flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-cream/60">
-                <span className="inline-block h-1 w-1 rounded-full bg-gold" />
-                {frame.label}
-              </figcaption>
-            </figure>
+              <div
+                className="flow-frame-inner absolute inset-0"
+                style={{
+                  animationDuration: `${FLOAT_DUR[k]}s`,
+                  animationDelay: `${FLOAT_DELAY[k]}s`,
+                }}
+              >
+                {frame.src && (
+                  <Image
+                    src={asset(frame.src)}
+                    {...blurProps(frame.src)}
+                    alt={frame.alt}
+                    fill
+                    sizes="560px"
+                    className="object-cover"
+                    priority={i === 0}
+                  />
+                )}
+              </div>
+            </div>
           );
         })}
       </div>
+
+      {/* flowing colour wash — blends the stream into one gradient */}
+      <div className="film-wash pointer-events-none absolute inset-0" aria-hidden />
 
       {/* edge fades into the void */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-void to-transparent md:w-48" />

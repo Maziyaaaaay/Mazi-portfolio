@@ -115,15 +115,15 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Ambient filmstrip — context, not focus */}
+      {/* Ambient film flow — blended projected light, context not focus */}
       <motion.div
         style={{ x: stripX, y: stripY }}
-        className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-[0.62]"
+        className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-[0.85]"
       >
         <FilmStrip />
       </motion.div>
       {/* readability scrim — dark enough behind the headline, clears on the right */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void from-10% via-void/55 to-void/10" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void from-12% via-void/50 to-void/5" />
 
       <div className="container-cine relative z-10 flex flex-1 items-center pb-16 pt-28 lg:pt-32">
         {/* ------------------------------------------------ text column */}

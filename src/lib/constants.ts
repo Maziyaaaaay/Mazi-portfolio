@@ -61,6 +61,9 @@ export const HERO = {
   ],
 } as const;
 
+/** Hero flow — only the most cinematic frames; the narrative and
+ *  title-card stills stay in Work / Concept Lab where they read
+ *  properly at full size. */
 export const FILM_FRAMES: FilmFrame[] = [
   {
     src: "/uploads/films/hu.jpg",
@@ -78,29 +81,19 @@ export const FILM_FRAMES: FilmFrame[] = [
     label: "COREVE · LAUNCH",
   },
   {
-    src: "/uploads/films/nurena.jpg",
-    alt: "Warm interior frame from the Nurena Mobile Wellness brand film",
-    label: "NURENA · WELLNESS",
-  },
-  {
-    src: "/uploads/films/topad.jpg",
-    alt: "Industrial detail frame from the TopAd exhibition commercial, Oman",
-    label: "TOPAD · OMAN",
-  },
-  {
     src: "/uploads/films/bluestone.jpg",
     alt: "Gold pendant macro from the Bluestone jewelry spot",
     label: "BLUESTONE · SPOT",
   },
   {
-    src: "/uploads/films/ict.jpg",
-    alt: "Aerial campus frame from the ICT Senior Secondary School film",
-    label: "ICT · CAMPAIGN",
+    src: "/uploads/films/seen.jpg",
+    alt: "Macro frame of a burgundy acetate hinge from the Seen Eyewear film",
+    label: "SEEN · PRODUCT",
   },
   {
-    src: "/uploads/films/lenskart.jpg",
-    alt: "Character frame from the Lenskart spoof spec ad",
-    label: "LENSKART · SPEC",
+    src: "/uploads/films/topad.jpg",
+    alt: "Fiery night frame from the TopAd exhibition commercial, Oman",
+    label: "TOPAD · OMAN",
   },
 ];
 
