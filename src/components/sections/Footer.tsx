@@ -3,7 +3,7 @@ import { SITE } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-line">
+    <footer className="relative z-10 border-t border-line">
       <div className="container-cine flex items-center justify-between py-8">
         <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted">
           © 2026 {SITE.name} · mazinkp.in

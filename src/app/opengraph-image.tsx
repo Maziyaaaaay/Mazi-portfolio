@@ -30,7 +30,7 @@ export default async function OpengraphImage() {
       >
         <div
           style={{
-            color: "#C8A96E",
+            color: "#C8F135",
             fontSize: 26,
             letterSpacing: "0.3em",
             marginBottom: 28,
@@ -51,7 +51,7 @@ export default async function OpengraphImage() {
           <div>MAKING BRANDS</div>
           <div style={{ display: "flex" }}>
             MOVE
-            <span style={{ color: "#C8A96E" }}>.</span>
+            <span style={{ color: "#C8F135" }}>.</span>
           </div>
         </div>
         <div
@@ -66,11 +66,11 @@ export default async function OpengraphImage() {
           }}
         >
           <span>MUHAMMED MAZIN KP</span>
-          <span style={{ color: "#C8A96E" }}>·</span>
+          <span style={{ color: "#C8F135" }}>·</span>
           <span>AI BRAND FILMS</span>
-          <span style={{ color: "#C8A96E" }}>·</span>
+          <span style={{ color: "#C8F135" }}>·</span>
           <span>EDUCATOR</span>
-          <span style={{ color: "#C8A96E" }}>·</span>
+          <span style={{ color: "#C8F135" }}>·</span>
           <span>FOUNDER</span>
         </div>
       </div>

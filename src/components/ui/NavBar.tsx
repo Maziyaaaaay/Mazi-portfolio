@@ -39,18 +39,21 @@ export default function NavBar() {
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-[120] transition-all duration-300"
-      style={{
-        backgroundColor: scrolled ? "var(--nav-bg)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled
-          ? "1px solid var(--border-subtle)"
-          : "1px solid transparent",
-      }}
+      className={`fixed inset-x-0 top-0 z-[120] border-b transition-colors duration-300 ${
+        scrolled ? "border-line" : "border-transparent"
+      }`}
     >
+      {/* glass lives on its own layer — backdrop-filter on the header
+          itself would become a containing block in Safari and clip the
+          fixed mobile menu to the bar */}
+      <div
+        aria-hidden
+        className={`glass glass-heavy absolute inset-0 transition-opacity duration-300 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
       <nav
-        className="container-cine flex h-16 items-center justify-between md:h-[72px]"
+        className="container-cine relative flex h-16 items-center justify-between md:h-[72px]"
         aria-label="Main navigation"
       >
         <a

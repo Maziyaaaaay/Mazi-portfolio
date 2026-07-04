@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { asset } from "@/lib/asset";
@@ -19,8 +19,12 @@ export default function VideoModal({
   title,
   onClose,
 }: VideoModalProps) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     if (!open) return;
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -29,6 +33,7 @@ export default function VideoModal({
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      opener?.focus();
     };
   }, [open, onClose]);
 
@@ -47,6 +52,7 @@ export default function VideoModal({
           aria-label={title ?? "Video player"}
         >
           <button
+            ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label="Close video"

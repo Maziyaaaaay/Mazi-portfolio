@@ -7,6 +7,7 @@ import {
   motion,
   useMotionValue,
   useReducedMotion,
+  useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
@@ -20,10 +21,12 @@ import {
 } from "lucide-react";
 import { HERO } from "@/lib/constants";
 import { asset } from "@/lib/asset";
+import { blurProps } from "@/lib/blur";
 import { EASE_CINE } from "@/lib/animations";
 import FilmStrip from "@/components/ui/FilmStrip";
 import Magnetic from "@/components/ui/Magnetic";
 import VideoModal from "@/components/ui/VideoModal";
+import ScrambleText from "@/components/motion/ScrambleText";
 
 const ROLE_ICONS = [Clapperboard, Rocket, Trophy, GraduationCap];
 const VISIBLE_PILLS = 3;
@@ -39,11 +42,26 @@ export default function HeroSection() {
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 220, damping: 26, mass: 0.4 });
   const sy = useSpring(my, { stiffness: 220, damping: 26, mass: 0.4 });
-  const stripX = useTransform(sx, (v) => v * -28);
-  const stripY = useTransform(sy, (v) => v * -12);
+
+  // scroll scrub: leaving the hero slides the strip sideways and
+  // sinks/fades the text column — cursor and scroll share transforms
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const stripX = useTransform(
+    [sx, scrollYProgress],
+    ([m, p]: number[]) => m * -28 + p * -160
+  );
+  const stripY = useTransform(
+    [sy, scrollYProgress],
+    ([m, p]: number[]) => m * -12 + p * 60
+  );
   const photoX = useTransform(sx, (v) => v * 16);
   const photoY = useTransform(sy, (v) => v * 12);
   const headlineX = useTransform(sx, (v) => v * 7);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 90]);
+  const textFade = useTransform(scrollYProgress, [0, 0.85], [1, 0.1]);
 
   const onMouseMove = (e: React.MouseEvent) => {
     if (reducedMotion) return;
@@ -84,7 +102,7 @@ export default function HeroSection() {
             width: "55vw",
             height: "55vw",
             background:
-              "radial-gradient(circle, color-mix(in srgb, var(--accent-gold) 30%, transparent), transparent 70%)",
+              "radial-gradient(circle, color-mix(in srgb, var(--accent) 28%, transparent), transparent 70%)",
           }}
         />
         <div
@@ -95,7 +113,7 @@ export default function HeroSection() {
             width: "45vw",
             height: "45vw",
             background:
-              "radial-gradient(circle, color-mix(in srgb, var(--accent-gold-dim) 22%, transparent), transparent 70%)",
+              "radial-gradient(circle, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 70%)",
             animationDelay: "-8s",
             animationDuration: "20s",
           }}
@@ -114,7 +132,9 @@ export default function HeroSection() {
 
       <div className="container-cine relative z-10 grid flex-1 items-center gap-12 pb-16 pt-28 lg:grid-cols-[1fr_auto] lg:gap-20 lg:pt-32">
         {/* ------------------------------------------------ text column */}
-        <div>
+        <motion.div
+          style={reducedMotion ? undefined : { y: textY, opacity: textFade }}
+        >
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -168,7 +188,7 @@ export default function HeroSection() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.5, ease: EASE_CINE }}
-                  className="flex items-center gap-2 rounded-full border border-gold/30 bg-void/40 px-4 py-1.5 font-body text-[13px] text-cream/85"
+                  className="glass glass-light flex items-center gap-2 rounded-full px-4 py-1.5 font-body text-[13px] text-cream/85"
                 >
                   <Icon size={14} className="text-gold" aria-hidden />
                   {role}
@@ -216,7 +236,7 @@ export default function HeroSection() {
               </button>
             </Magnetic>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* ------------------------------------------------ photo column */}
         <motion.div
@@ -240,6 +260,7 @@ export default function HeroSection() {
           >
             <Image
               src={asset("/uploads/profile.jpeg")}
+              {...blurProps("/uploads/profile.jpeg")}
               alt="Muhammed Mazin KP leaning against a black car, teal striped shirt, Kerala"
               fill
               sizes="(min-width: 1280px) 390px, 360px"
@@ -281,7 +302,7 @@ export default function HeroSection() {
               key={stat}
               className="flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.2em] text-muted md:text-xs"
             >
-              {stat}
+              <ScrambleText text={stat} />
               {i < HERO.stats.length - 1 && (
                 <span className="hidden text-gold md:inline" aria-hidden>
                   ·

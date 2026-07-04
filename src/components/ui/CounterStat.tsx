@@ -32,10 +32,10 @@ export default function CounterStat({
         observer.disconnect();
 
         if (reduced) {
-          el.textContent = String(value);
           return;
         }
 
+        el.textContent = "0";
         const proxy = { n: 0 };
         gsap.to(proxy, {
           n: value,
@@ -56,7 +56,7 @@ export default function CounterStat({
   return (
     <div className="flex flex-col items-center gap-2 text-center md:items-start md:text-left">
       <p className="font-display text-6xl leading-none text-gold md:text-7xl">
-        <span ref={numRef}>0</span>
+        <span ref={numRef}>{value}</span>
         {suffix}
       </p>
       <p className="font-body text-sm uppercase tracking-[0.15em] text-muted">

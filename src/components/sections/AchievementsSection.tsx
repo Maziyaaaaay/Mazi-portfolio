@@ -1,27 +1,55 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { ACHIEVEMENTS } from "@/lib/constants";
-import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
+import { EASE_CINE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
+import SplitReveal from "@/components/motion/SplitReveal";
 
+/**
+ * Director's timeline — the recognition list reads like a video
+ * timeline: a rail with frame ticks, a playhead fill scrubbed by
+ * scroll, and each entry slated with a scene/timecode marker.
+ */
 export default function AchievementsSection() {
+  const railRef = useRef<HTMLOListElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: railRef,
+    offset: ["start 0.75", "end 0.35"],
+  });
+  const playhead = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 24,
+  });
+
   return (
     <section aria-label="Achievements and recognition">
       <div className="container-cine section-pad">
         <SectionLabel>Recognition</SectionLabel>
 
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={VIEWPORT_ONCE}
+        <SplitReveal
+          text="EARNED, NOT CLAIMED"
           className="mt-6 font-display text-[clamp(48px,7vw,96px)] leading-none text-cream"
-        >
-          EARNED, NOT CLAIMED
-        </motion.h2>
+        />
 
-        <ol className="relative mt-16 space-y-4 border-l border-line pl-8 md:pl-12">
+        <ol ref={railRef} className="relative mt-16 space-y-4 pl-8 md:pl-12">
+          {/* rail with frame ticks */}
+          <span
+            aria-hidden
+            className="absolute bottom-0 left-0 top-0 w-px"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, var(--border-subtle) 0 10px, transparent 10px 14px)",
+            }}
+          />
+          {/* scrubbed playhead fill */}
+          <motion.span
+            aria-hidden
+            style={{ scaleY: playhead }}
+            className="absolute bottom-0 left-0 top-0 w-px origin-top bg-gold shadow-[0_0_12px_color-mix(in_srgb,var(--accent)_60%,transparent)]"
+          />
+
           {ACHIEVEMENTS.map((item, i) => (
             <motion.li
               key={`${item.year}-${item.title}`}
@@ -35,8 +63,11 @@ export default function AchievementsSection() {
                 className="absolute -left-[37px] top-7 h-[7px] w-[7px] rounded-full border border-gold bg-void md:-left-[53px]"
                 aria-hidden
               />
-              <div className="flex flex-col gap-1 rounded-sm border border-line bg-surface px-6 py-5 transition-colors duration-300 hover:border-gold/25 md:flex-row md:items-baseline md:gap-8 md:px-8 md:py-6">
-                <p className="w-20 shrink-0 font-mono text-sm text-gold">
+              <div className="group flex flex-col gap-1 rounded-sm border border-line bg-surface px-6 py-5 transition-colors duration-300 hover:border-gold/25 md:flex-row md:items-baseline md:gap-8 md:px-8 md:py-6">
+                <p className="w-32 shrink-0 font-mono text-sm text-gold">
+                  <span className="text-faint">
+                    SC {String(i + 1).padStart(2, "0")} ·{" "}
+                  </span>
                   {item.year}
                 </p>
                 <div>

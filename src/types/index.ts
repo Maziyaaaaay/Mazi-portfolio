@@ -19,6 +19,23 @@ export interface PosterStyle {
   accent: string;
 }
 
+/** Where a full film lives — self-hosted file or a platform embed. */
+export type VideoSource =
+  | { kind: "file"; src: string }
+  | { kind: "youtube"; id: string }
+  | { kind: "vimeo"; id: string };
+
+/** Expanded-view case content. Every field optional — the modal only
+ *  renders what exists, so unknowns stay TODO in constants, not on
+ *  the page. */
+export interface CaseStudy {
+  brief?: string;
+  approach?: string;
+  pipeline?: string;
+  outcome?: string;
+  credits?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -30,7 +47,12 @@ export interface Project {
   award?: string;
   image?: string;
   imageAlt?: string;
-  video?: string;
+  /** Full film for the expanded player. */
+  video?: VideoSource;
+  /** Short muted loop for hover previews; falls back to the full
+   *  file when omitted. */
+  previewSrc?: string;
+  caseStudy?: CaseStudy;
   link?: string;
   featured?: boolean;
   poster?: PosterStyle;
@@ -81,4 +103,10 @@ export interface NavLink {
   href: string;
   /** Optional work-grid filter applied on click. */
   filter?: string;
+}
+
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
 }

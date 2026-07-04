@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeLeft, VIEWPORT_ONCE } from "@/lib/animations";
+import ScrambleText from "@/components/motion/ScrambleText";
 
 export default function SectionLabel({ children }: { children: string }) {
   return (
@@ -10,9 +11,10 @@ export default function SectionLabel({ children }: { children: string }) {
       initial="hidden"
       whileInView="visible"
       viewport={VIEWPORT_ONCE}
-      className="font-body text-xs font-medium uppercase tracking-[0.3em] text-gold"
+      className="font-mono text-xs font-medium uppercase tracking-[0.3em] text-gold"
     >
-      —&nbsp;&nbsp;{children}
+      —&nbsp;&nbsp;
+      <ScrambleText text={children} />
     </motion.p>
   );
 }

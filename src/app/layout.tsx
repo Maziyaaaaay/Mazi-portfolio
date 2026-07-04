@@ -1,20 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
-import localFont from "next/font/local";
+import {
+  Archivo,
+  Bricolage_Grotesque,
+  JetBrains_Mono,
+} from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import Aurora from "@/components/motion/Aurora";
+import Preloader from "@/components/motion/Preloader";
+import ScrollTimecode from "@/components/ui/ScrollTimecode";
 import { SITE } from "@/lib/constants";
 
-const bebas = localFont({
-  src: "../../public/Bebas_Neue/BebasNeue-Regular.ttf",
-  variable: "--font-bebas",
+// Variable font (wght + wdth) — the display voice is condensed black,
+// and the axes stay animatable for kinetic type.
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+  axes: ["wdth"],
   display: "swap",
   preload: true,
 });
 
-const grotesk = Space_Grotesk({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-grotesk",
+  variable: "--font-bricolage",
   display: "swap",
   preload: true,
 });
@@ -116,22 +125,27 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bebas.variable} ${grotesk.variable} ${jetbrains.variable}`}
+      className={`${archivo.variable} ${bricolage.variable} ${jetbrains.variable}`}
       suppressHydrationWarning
     >
       <body>
-        {/* set theme class before paint to avoid a flash of the wrong theme */}
+        {/* set theme + preloader classes before paint to avoid flashes */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){}",
+              "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){};try{if(sessionStorage.getItem('mz-preloaded'))document.documentElement.classList.add('preloader-done')}catch(e){}",
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
-        <Providers>{children}</Providers>
+        <Providers>
+          <Aurora />
+          <Preloader />
+          <ScrollTimecode />
+          {children}
+        </Providers>
       </body>
     </html>
   );
