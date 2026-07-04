@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Award, ExternalLink, Play } from "lucide-react";
 import type { Project } from "@/types";
 import { asset } from "@/lib/asset";
+import { blurProps } from "@/lib/blur";
 import { EASE_CINE } from "@/lib/animations";
 import PosterFrame from "@/components/ui/PosterFrame";
 import HoverPreview from "@/components/ui/HoverPreview";
@@ -26,12 +27,15 @@ interface ProjectCardProps {
   aspectClass: string;
   /** Opens the expanded case view. */
   onOpen?: (project: Project) => void;
+  /** next/image sizes — matches the layout the card renders in. */
+  sizes?: string;
 }
 
 export default function ProjectCard({
   project,
   aspectClass,
   onOpen,
+  sizes = "(min-width: 768px) 50vw, 100vw",
 }: ProjectCardProps) {
   const [hovered, setHovered] = useState(false);
   const hasVideo = Boolean(project.video);
@@ -61,9 +65,10 @@ export default function ProjectCard({
           {project.image ? (
             <Image
               src={asset(project.image)}
+              {...blurProps(project.image)}
               alt={project.imageAlt ?? project.title}
               fill
-              sizes="(min-width: 768px) 50vw, 100vw"
+              sizes={sizes}
               className="glitch-on-hover object-cover saturate-[0.85]"
               loading="lazy"
             />
@@ -91,8 +96,10 @@ export default function ProjectCard({
           }}
         />
 
-        {/* status chip */}
+        {/* status chip — decorative inside the button; the status is
+            announced in the expanded case view */}
         <span
+          aria-hidden
           className={`absolute left-3 top-3 rounded-full border bg-void/70 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm ${STATUS_STYLES[project.status]}`}
         >
           {project.status}
@@ -134,8 +141,10 @@ export default function ProjectCard({
           type="button"
           className="block w-full text-left"
           onClick={() => onOpen!(project)}
-          aria-label={`Open case study: ${project.title}`}
         >
+          {/* the name comes from the content itself — an aria-label
+              can never contain every visible fragment in the frame */}
+          <span className="sr-only">{project.title} — open case study.</span>
           {media}
         </button>
       ) : project.link ? (

@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import { FILM_FRAMES } from "@/lib/constants";
 import { asset } from "@/lib/asset";
+import { blurProps } from "@/lib/blur";
 import { useLenis } from "@/components/motion/SmoothScroll";
 import PosterFrame from "@/components/ui/PosterFrame";
 
@@ -93,6 +94,7 @@ export default function FilmStrip({ className = "" }: { className?: string }) {
               {frame.src ? (
                 <Image
                   src={asset(frame.src)}
+                  {...blurProps(frame.src)}
                   alt={frame.alt}
                   fill
                   sizes="280px"

@@ -16,7 +16,7 @@
   --accent-3: #ff6b3d;
   --text-primary: #f2f4ec;
   --text-secondary: #a0a69a;
-  --text-tertiary: #5b6054;
+  --text-tertiary: #82887c; /* ≥4.5:1 on the void — Lighthouse floor */
   --border-subtle: rgba(242, 244, 236, 0.08);
   --nav-bg: rgba(7, 7, 8, 0.7);
   --grain-opacity: 0.05;
@@ -53,7 +53,7 @@ html.light {
   --accent-3: #e0491f;
   --text-primary: #191c13;
   --text-secondary: #4f574a;
-  --text-tertiary: #8f958a;
+  --text-tertiary: #6b7265; /* ≥4.5:1 on the paper */
   --border-subtle: rgba(25, 28, 19, 0.12);
   --nav-bg: rgba(244, 246, 238, 0.7);
   --grain-opacity: 0.05;
@@ -146,6 +146,13 @@ body {
 ::selection {
   background-color: var(--accent);
   color: #070708;
+}
+
+/* keyboard focus — visible on every interactive element */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar {

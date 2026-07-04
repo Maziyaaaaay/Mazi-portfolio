@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Award, ExternalLink, X } from "lucide-react";
 import type { Project, VideoSource } from "@/types";
 import { asset } from "@/lib/asset";
+import { blurProps } from "@/lib/blur";
 import { EASE_CINE } from "@/lib/animations";
 import PosterFrame from "@/components/ui/PosterFrame";
 
@@ -56,8 +57,12 @@ export default function CaseStudyModal({
   project: Project | null;
   onClose: () => void;
 }) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     if (!project) return;
+    const opener = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -66,6 +71,7 @@ export default function CaseStudyModal({
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      opener?.focus();
     };
   }, [project, onClose]);
 
@@ -84,6 +90,7 @@ export default function CaseStudyModal({
           aria-label={`${project.title} — case study`}
         >
           <button
+            ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label="Close case study"
@@ -108,6 +115,7 @@ export default function CaseStudyModal({
               ) : project.image ? (
                 <Image
                   src={asset(project.image)}
+                  {...blurProps(project.image)}
                   alt={project.imageAlt ?? project.title}
                   fill
                   sizes="(min-width: 1024px) 1024px, 100vw"

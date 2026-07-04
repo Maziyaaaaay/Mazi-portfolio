@@ -7,6 +7,7 @@ import { Play } from "lucide-react";
 import type { Concept } from "@/types";
 import { CONCEPT_LAB, CONCEPTS } from "@/lib/constants";
 import { asset } from "@/lib/asset";
+import { blurProps } from "@/lib/blur";
 import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import VideoModal from "@/components/ui/VideoModal";
@@ -39,6 +40,7 @@ function ConceptCard({
           <div className="absolute inset-0 transition-transform duration-[400ms] ease-out group-hover:scale-105">
             <Image
               src={asset(concept.image)}
+              {...blurProps(concept.image)}
               alt={concept.alt}
               fill
               sizes="(min-width: 1024px) 25vw, 50vw"

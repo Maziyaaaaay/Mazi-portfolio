@@ -172,6 +172,7 @@ export default function WorkSection() {
                     project={project}
                     aspectClass={REEL_ASPECTS[project.id] ?? "aspect-[4/3]"}
                     onOpen={setOpenProject}
+                    sizes="(min-width: 1024px) 34vw, 100vw"
                   />
                 </article>
               ))}

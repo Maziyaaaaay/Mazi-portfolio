@@ -48,7 +48,9 @@ export default function ScrambleText({
   }, [inView, reduced, text]);
 
   return (
-    <span ref={ref} className={className} aria-label={text}>
+    <span ref={ref} className={className}>
+      {/* real text for AT; the scramble is decorative */}
+      <span className="sr-only">{text}</span>
       <span aria-hidden>{display}</span>
     </span>
   );

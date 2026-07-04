@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { TRAVEL } from "@/lib/constants";
 import { asset } from "@/lib/asset";
+import { blurProps } from "@/lib/blur";
 import { fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
 
 const DECK_TILTS = [0, -3.5, 3, -1.5];
@@ -54,6 +55,7 @@ function TravelDeck() {
             >
               <Image
                 src={asset(photo.src)}
+                {...blurProps(photo.src)}
                 alt={photo.alt}
                 fill
                 sizes="(min-width: 1024px) 384px, 90vw"
