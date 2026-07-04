@@ -354,6 +354,33 @@ body::after {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Preloader — film leader. JS runs the counter + wipe; these rules   */
+/*  cover everyone else: repeat visits (class set pre-paint), no-JS    */
+/*  (CSS auto-fade), and reduced motion (never shown).                 */
+/* ------------------------------------------------------------------ */
+
+#preloader {
+  background-color: var(--bg-void);
+}
+@keyframes preloader-autohide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+#preloader {
+  animation: preloader-autohide 0.6s ease 2.4s forwards;
+}
+html.preloader-done #preloader {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  #preloader {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /*  RGB-split glitch — one-shot flash when a poster is hovered,        */
 /*  before its preview loop takes over                                 */
 /* ------------------------------------------------------------------ */

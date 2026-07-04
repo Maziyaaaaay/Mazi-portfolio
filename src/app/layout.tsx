@@ -7,6 +7,8 @@ import {
 import "./globals.css";
 import Providers from "@/components/Providers";
 import Aurora from "@/components/motion/Aurora";
+import Preloader from "@/components/motion/Preloader";
+import ScrollTimecode from "@/components/ui/ScrollTimecode";
 import { SITE } from "@/lib/constants";
 
 // Variable font (wght + wdth) — the display voice is condensed black,
@@ -127,11 +129,11 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        {/* set theme class before paint to avoid a flash of the wrong theme */}
+        {/* set theme + preloader classes before paint to avoid flashes */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){}",
+              "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){};try{if(sessionStorage.getItem('mz-preloaded'))document.documentElement.classList.add('preloader-done')}catch(e){}",
           }}
         />
         <script
@@ -140,6 +142,8 @@ export default function RootLayout({
         />
         <Providers>
           <Aurora />
+          <Preloader />
+          <ScrollTimecode />
           {children}
         </Providers>
       </body>

@@ -10,6 +10,7 @@ import TeachingSection from "@/components/sections/TeachingSection";
 import TravelSection from "@/components/sections/TravelSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
+import SectionCut from "@/components/motion/SectionCut";
 
 export default function Home() {
   return (
@@ -19,13 +20,17 @@ export default function Home() {
       <main id="top" className="relative z-10">
         <HeroSection />
         <ManifestoSection />
+        <SectionCut scene="01" label="Services" />
         <WhatIDoSection />
+        <SectionCut scene="02" label="Selected Work" />
         <WorkSection />
         <StartupSection />
         <ConceptLabSection />
+        <SectionCut scene="03" label="Recognition" />
         <AchievementsSection />
         <TeachingSection />
         <TravelSection />
+        <SectionCut scene="04" label="Contact" />
         <ContactSection />
       </main>
       <Footer />

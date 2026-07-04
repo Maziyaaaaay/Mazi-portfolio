@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Phone } from "lucide-react";
+import { ArrowRight, Linkedin, Mail, Phone } from "lucide-react";
 import { CONTACT, SITE } from "@/lib/constants";
 import { fadeUp, staggerChildren, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import SplitReveal from "@/components/motion/SplitReveal";
+import Magnetic from "@/components/ui/Magnetic";
 
 const CONTACT_BLOCKS = [
   {
@@ -33,14 +34,57 @@ const CONTACT_BLOCKS = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" aria-label="Contact">
-      <div className="container-cine section-pad">
+    <section
+      id="contact"
+      aria-label="Contact"
+      className="group/section relative overflow-hidden"
+      onMouseMove={(e) => {
+        const el = e.currentTarget;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--cx", `${e.clientX - r.left}px`);
+        el.style.setProperty("--cy", `${e.clientY - r.top}px`);
+      }}
+    >
+      {/* cursor-following gradient glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/section:opacity-100"
+        style={{
+          background:
+            "radial-gradient(640px circle at var(--cx, 70%) var(--cy, 30%), color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%)",
+        }}
+      />
+
+      <div className="container-cine section-pad relative">
         <SectionLabel>{CONTACT.eyebrow}</SectionLabel>
 
         <SplitReveal
           text="READY WHEN YOU ARE."
-          className="mt-6 font-display text-[clamp(56px,9vw,120px)] leading-none text-cream"
+          className="mt-6 font-display text-[clamp(60px,11vw,160px)] leading-[0.92] text-cream"
         />
+
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT_ONCE}
+          className="mt-12"
+        >
+          <Magnetic strength={0.35}>
+            <a
+              href={`mailto:${SITE.email}?subject=Project%20inquiry`}
+              className="group/cta glass inline-flex items-center gap-3 rounded-full px-10 py-5 font-body text-base font-semibold uppercase tracking-[0.15em] text-gold transition-colors duration-300 hover:text-cream"
+            >
+              <span className="glass-sheen" aria-hidden />
+              Start a Project
+              <ArrowRight
+                size={18}
+                className="transition-transform duration-300 group-hover/cta:translate-x-1"
+                aria-hidden
+              />
+            </a>
+          </Magnetic>
+        </motion.div>
 
         <motion.div
           variants={staggerChildren}

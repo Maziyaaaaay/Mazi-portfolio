@@ -10,6 +10,7 @@ import { EASE_CINE } from "@/lib/animations";
 import PosterFrame from "@/components/ui/PosterFrame";
 import HoverPreview from "@/components/ui/HoverPreview";
 import Tilt from "@/components/ui/Tilt";
+import Magnetic from "@/components/ui/Magnetic";
 
 const STATUS_STYLES: Record<Project["status"], string> = {
   LIVE: "text-[#8fd19a] border-[#8fd19a]/40",
@@ -107,16 +108,19 @@ export default function ProjectCard({
           </span>
         )}
 
-        {/* play affordance for video projects */}
-        {hasVideo && (
+        {/* magnetic VIEW affordance */}
+        {opensCase && (
           <span
             className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
               hovered ? "opacity-100" : "opacity-0"
             }`}
           >
-            <span className="glass flex h-16 w-16 items-center justify-center rounded-full text-gold">
-              <Play size={22} aria-hidden />
-            </span>
+            <Magnetic strength={0.3}>
+              <span className="glass flex items-center gap-2 rounded-full px-6 py-3 font-mono text-[11px] uppercase tracking-[0.25em] text-gold">
+                {hasVideo && <Play size={13} aria-hidden />}
+                View
+              </span>
+            </Magnetic>
           </span>
         )}
       </motion.div>
