@@ -1,7 +1,6 @@
 import type {
   Achievement,
   Concept,
-  FilmFrame,
   NavLink,
   Project,
   Service,
@@ -61,42 +60,6 @@ export const HERO = {
   ],
 } as const;
 
-/** Hero flow — only the most cinematic frames; the narrative and
- *  title-card stills stay in Work / Concept Lab where they read
- *  properly at full size. */
-export const FILM_FRAMES: FilmFrame[] = [
-  {
-    src: "/uploads/films/hu.jpg",
-    alt: "Frame from the HU brand identity film — lime-green energy swirl, UAE",
-    label: "HU · UAE",
-  },
-  {
-    src: "/uploads/films/rayban.jpg",
-    alt: "Macro frame from the Meta Ray-Ban concept film on a deep red set",
-    label: "META RAY-BAN · CONCEPT",
-  },
-  {
-    src: "/uploads/films/coreve.jpg",
-    alt: "Studio frame of a sneaker from the Coreve launch film",
-    label: "COREVE · LAUNCH",
-  },
-  {
-    src: "/uploads/films/bluestone.jpg",
-    alt: "Gold pendant macro from the Bluestone jewelry spot",
-    label: "BLUESTONE · SPOT",
-  },
-  {
-    src: "/uploads/films/seen.jpg",
-    alt: "Macro frame of a burgundy acetate hinge from the Seen Eyewear film",
-    label: "SEEN · PRODUCT",
-  },
-  {
-    src: "/uploads/films/topad.jpg",
-    alt: "Fiery night frame from the TopAd exhibition commercial, Oman",
-    label: "TOPAD · OMAN",
-  },
-];
-
 /* ------------------------------------------------------------------ */
 /*  Manifesto                                                          */
 /* ------------------------------------------------------------------ */
@@ -135,7 +98,6 @@ export const SERVICES: Service[] = [
     title: "AI BRAND FILMS",
     description:
       "Cinematic product spots and commercials, built with generative AI, for brands that want to stand out.",
-    tools: "Kling 3.0 · Veo 3.1 · Seedance 2.0 · ElevenLabs · CapCut",
     clients: "HU (UAE) · TopAd (Oman) · Coreve · Nurena",
   },
   {
@@ -144,7 +106,6 @@ export const SERVICES: Service[] = [
     title: "STARTUP BUILDING",
     description:
       "Co-founding AmpAware, a smart electricity monitoring system for Kerala households.",
-    tools: "IoT · AI · Next.js · Supabase",
     clients: "AmpAware · TripSplit · Calivista",
   },
   {
@@ -153,8 +114,7 @@ export const SERVICES: Service[] = [
     title: "AI EDUCATION",
     description:
       "Teaching creators and students to produce commercialized AI content, not just play with tools.",
-    tools: "Demand School · IEEE COET · 50+ Students Taught",
-    clients: "AI Contentology Course · Synaptics Workshop",
+    clients: "AI Contentology Course · Synaptics Workshop · 50+ Students Taught",
   },
   {
     id: "content-brand",
@@ -162,7 +122,6 @@ export const SERVICES: Service[] = [
     title: "CONTENT & BRAND",
     description:
       "LinkedIn content strategy, personal branding, and thought leadership for the AI generation.",
-    tools: "LinkedIn · Ghostwriting · Brand Voice",
     clients: "Personal Brand · Client Ghostwriting",
   },
 ];
@@ -177,9 +136,6 @@ export const WORK_FILTERS = [
   { id: "web-app", label: "WEB & APP" },
   { id: "startup", label: "STARTUP" },
 ] as const;
-
-/** The documented house pipeline for AI brand films (see SERVICES). */
-const FILM_PIPELINE = "Kling 3.0 · Veo 3.1 · Seedance 2.0 · ElevenLabs · CapCut";
 
 export const PROJECTS: Project[] = [
   {
@@ -198,7 +154,6 @@ export const PROJECTS: Project[] = [
     caseStudy: {
       brief:
         "Give Happy User, a UAE lifestyle electronics brand, a full brand identity and a product commercial in one pass — lime green × forest dark green × cinematic black.",
-      pipeline: FILM_PIPELINE,
       // TODO(Mazin): approach — how the look was developed for HU
       // TODO(Mazin): outcome — results/reception after delivery
       // TODO(Mazin): credits — anyone besides you on this film?
@@ -218,7 +173,6 @@ export const PROJECTS: Project[] = [
     caseStudy: {
       brief:
         "A brand film for Oman's leading exhibition company — scale, prestige, and event excellence, produced entirely with generative AI.",
-      pipeline: FILM_PIPELINE,
       // TODO(Mazin): approach / outcome / credits
     },
   },
@@ -236,7 +190,6 @@ export const PROJECTS: Project[] = [
     caseStudy: {
       brief:
         "Launch film for a D2C sneaker brand designed for abaya-wearing women — cultural precision meets modern aesthetics.",
-      pipeline: FILM_PIPELINE,
       // TODO(Mazin): approach / outcome / credits
     },
   },
@@ -254,7 +207,6 @@ export const PROJECTS: Project[] = [
     caseStudy: {
       brief:
         "Brand film for Nurena Mobile Wellness — calm, clinical confidence rendered with generative AI.",
-      pipeline: FILM_PIPELINE,
       // TODO(Mazin): approach / outcome / credits
     },
   },
@@ -272,7 +224,6 @@ export const PROJECTS: Project[] = [
     caseStudy: {
       brief:
         "Campaign film for ICT Senior Secondary School — institutional storytelling with cinematic AI production.",
-      pipeline: FILM_PIPELINE,
       // TODO(Mazin): approach / outcome / credits
     },
   },
@@ -288,7 +239,6 @@ export const PROJECTS: Project[] = [
     caseStudy: {
       brief:
         "Smart electricity monitoring for Kerala households — real-time energy intelligence for everyday homes. Co-founded and led as CEO.",
-      pipeline: "IoT · AI · Next.js · Supabase",
       // TODO(Mazin): approach / outcome (pilot numbers when shareable)
     },
     poster: {
@@ -304,12 +254,11 @@ export const PROJECTS: Project[] = [
     category: "web-app",
     categoryLabel: "MOBILE APP · NEXT.JS 15 + SUPABASE",
     description:
-      "Trip expense splitting app. Next.js 15 + Supabase. Complete UI designed with warm dark luxury glassmorphism.",
+      "Trip expense splitting app with a complete UI designed in warm dark luxury glassmorphism.",
     status: "IN DEVELOPMENT",
     caseStudy: {
       brief:
         "Trip expense splitting app with a complete UI designed in warm dark luxury glassmorphism.",
-      pipeline: "Next.js 15 · Supabase",
     },
     poster: {
       title: "TRIPSPLIT",

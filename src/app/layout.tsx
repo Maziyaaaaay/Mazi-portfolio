@@ -47,8 +47,6 @@ export const metadata: Metadata = {
     "AI brand films",
     "generative AI video",
     "AI educator",
-    "Kling 3.0",
-    "Veo 3.1",
     "prompt engineering",
     "AmpAware",
     "Demand School",

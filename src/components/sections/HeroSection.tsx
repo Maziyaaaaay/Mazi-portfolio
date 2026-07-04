@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import { HERO } from "@/lib/constants";
 import { EASE_CINE } from "@/lib/animations";
-import FilmStrip from "@/components/ui/FilmStrip";
 import Magnetic from "@/components/ui/Magnetic";
 import VideoModal from "@/components/ui/VideoModal";
 import ScrambleText from "@/components/motion/ScrambleText";
@@ -40,20 +39,11 @@ export default function HeroSection() {
   const sx = useSpring(mx, { stiffness: 220, damping: 26, mass: 0.4 });
   const sy = useSpring(my, { stiffness: 220, damping: 26, mass: 0.4 });
 
-  // scroll scrub: leaving the hero slides the strip sideways and
-  // sinks/fades the text column — cursor and scroll share transforms
+  // scroll scrub: leaving the hero sinks and fades the text
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const stripX = useTransform(
-    [sx, scrollYProgress],
-    ([m, p]: number[]) => m * -28 + p * -160
-  );
-  const stripY = useTransform(
-    [sy, scrollYProgress],
-    ([m, p]: number[]) => m * -12 + p * 60
-  );
   const headlineX = useTransform(sx, (v) => v * 7);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const textFade = useTransform(scrollYProgress, [0, 0.85], [1, 0.1]);
@@ -115,17 +105,8 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* Ambient film flow — blended projected light, context not focus */}
-      <motion.div
-        style={{ x: stripX, y: stripY }}
-        className="pointer-events-auto absolute left-0 top-1/2 z-0 w-full -translate-y-1/2 opacity-[0.85]"
-      >
-        <FilmStrip />
-      </motion.div>
-      {/* readability scrim — dark enough behind the headline, clears on the right */}
-      <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void from-12% via-void/50 to-void/5" />
 
-      <div className="container-cine relative z-10 flex flex-1 items-center pb-16 pt-28 lg:pt-32">
+      <div className="container-cine relative z-10 flex flex-1 items-center pb-6 pt-24 lg:pt-24">
         {/* ------------------------------------------------ text column */}
         <motion.div
           style={reducedMotion ? undefined : { y: textY, opacity: textFade }}
@@ -134,7 +115,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE_CINE }}
-            className="mb-6 font-body text-xs font-medium uppercase tracking-[0.3em] text-gold md:text-sm"
+            className="mb-4 font-body text-xs font-medium uppercase tracking-[0.3em] text-gold md:text-sm"
           >
             {HERO.eyebrow}
           </motion.p>
@@ -146,7 +127,7 @@ export default function HeroSection() {
             {HERO.headline.map((line, i) => (
               <span
                 key={line}
-                className="block overflow-hidden text-[clamp(64px,13vw,160px)]"
+                className="block overflow-hidden text-[clamp(56px,11vw,150px)]"
               >
                 <motion.span
                   className="block"
@@ -172,7 +153,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.9, ease: EASE_CINE }}
-            className="mt-8 flex flex-wrap items-center gap-3"
+            className="mt-6 flex flex-wrap items-center gap-3"
           >
             <AnimatePresence mode="popLayout" initial={false}>
               {visibleRoles.map(({ role, Icon }) => (
@@ -196,7 +177,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.0, ease: EASE_CINE }}
-            className="mt-6 max-w-md font-body text-lg text-muted"
+            className="mt-5 max-w-md font-body text-lg text-muted"
           >
             {HERO.supporting}
           </motion.p>
@@ -205,7 +186,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.1, ease: EASE_CINE }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Magnetic>
               <a
@@ -241,7 +222,7 @@ export default function HeroSection() {
         transition={{ duration: 0.8, delay: 1.3, ease: EASE_CINE }}
         className="relative z-10 border-t border-line"
       >
-        <div className="container-cine flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-5 md:justify-between md:gap-x-2">
+        <div className="container-cine flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-4 md:justify-between md:gap-x-2">
           {HERO.stats.map((stat, i) => (
             <span
               key={stat}

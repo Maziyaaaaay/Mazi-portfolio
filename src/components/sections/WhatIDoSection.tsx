@@ -88,11 +88,7 @@ export default function WhatIDoSection() {
                       {service.description}
                     </p>
 
-                    <div className="mt-8 grid gap-2 border-t border-line pt-6 md:grid-cols-2">
-                      <p className="font-mono text-xs leading-relaxed text-faint">
-                        <span className="text-gold-dim">TOOLS&nbsp;—&nbsp;</span>
-                        {service.tools}
-                      </p>
+                    <div className="mt-8 border-t border-line pt-6">
                       <p className="font-mono text-xs leading-relaxed text-faint">
                         <span className="text-gold-dim">WORK&nbsp;—&nbsp;</span>
                         {service.clients}

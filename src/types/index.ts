@@ -31,7 +31,6 @@ export type VideoSource =
 export interface CaseStudy {
   brief?: string;
   approach?: string;
-  pipeline?: string;
   outcome?: string;
   credits?: string;
 }
@@ -63,7 +62,6 @@ export interface Service {
   icon: string;
   title: string;
   description: string;
-  tools: string;
   clients: string;
 }
 
@@ -71,15 +69,6 @@ export interface Achievement {
   year: string;
   title: string;
   context: string;
-}
-
-export interface FilmFrame {
-  /** Image src, or undefined for a typographic poster frame. */
-  src?: string;
-  alt: string;
-  /** Slate label shown on the frame. */
-  label: string;
-  poster?: PosterStyle;
 }
 
 export interface Concept {

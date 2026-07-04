@@ -155,7 +155,7 @@ export default function WorkSection() {
               <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
                 <SplitReveal
                   text="SELECTED WORK"
-                  className="font-display text-[clamp(48px,6.5vw,96px)] leading-none text-cream"
+                  className="font-display text-[clamp(40px,5vw,76px)] leading-none text-cream"
                 />
                 <FilterTabs filter={filter} setFilter={setFilter} />
               </div>
@@ -164,10 +164,15 @@ export default function WorkSection() {
             <motion.div
               ref={trackRef}
               style={{ x }}
-              className="mt-12 flex w-max items-start gap-10 pl-[max(20px,calc((100vw-1400px)/2+64px))] pr-[12vw]"
+              className="mt-8 flex w-max items-start gap-10 pl-[max(20px,calc((100vw-1400px)/2+64px))] pr-[12vw]"
             >
+              {/* card width capped by viewport height so portrait
+                  frames never clip on short screens */}
               {visible.map((project) => (
-                <article key={project.id} className="w-[34vw] max-w-[520px] shrink-0">
+                <article
+                  key={project.id}
+                  className="w-[min(30vw,42vh)] max-w-[480px] shrink-0"
+                >
                   <ProjectCard
                     project={project}
                     aspectClass={REEL_ASPECTS[project.id] ?? "aspect-[4/3]"}

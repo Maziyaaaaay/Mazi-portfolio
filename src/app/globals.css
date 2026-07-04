@@ -255,58 +255,6 @@ body::after {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Hero film flow — feathered frames that melt together, breathe,    */
-/*  and carry a flowing colour wash                                    */
-/* ------------------------------------------------------------------ */
-
-.flow-frame {
-  /* soft feather on every edge so neighbours cross-blend */
-  mask-image: radial-gradient(100% 100% at 50% 50%, #000 48%, transparent 82%);
-  -webkit-mask-image: radial-gradient(
-    100% 100% at 50% 50%,
-    #000 48%,
-    transparent 82%
-  );
-}
-
-@keyframes frame-breathe {
-  0% {
-    transform: translateY(-7px) scale(1.12);
-  }
-  100% {
-    transform: translateY(9px) scale(1.2);
-  }
-}
-/* content drifts inside the static mask — alive within the feather */
-.flow-frame-inner {
-  animation: frame-breathe 10s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-@keyframes wash-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-.film-wash {
-  background: linear-gradient(
-    100deg,
-    color-mix(in srgb, var(--accent) 50%, transparent),
-    transparent 26%,
-    color-mix(in srgb, var(--accent-2) 42%, transparent) 50%,
-    transparent 74%,
-    color-mix(in srgb, var(--accent-3) 45%, transparent)
-  );
-  background-size: 220% 100%;
-  mix-blend-mode: soft-light;
-  opacity: 0.85;
-  animation: wash-flow 16s linear infinite;
-}
-
-/* ------------------------------------------------------------------ */
 /*  Ambient hero glow — slow-breathing depth, GPU-cheap                */
 /* ------------------------------------------------------------------ */
 

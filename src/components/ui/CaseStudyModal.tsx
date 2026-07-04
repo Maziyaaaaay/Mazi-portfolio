@@ -13,7 +13,6 @@ import PosterFrame from "@/components/ui/PosterFrame";
 const CASE_FIELDS = [
   ["brief", "Brief"],
   ["approach", "Approach"],
-  ["pipeline", "Pipeline"],
   ["outcome", "Outcome"],
   ["credits", "Credits"],
 ] as const;
