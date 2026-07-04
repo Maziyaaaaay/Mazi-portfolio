@@ -8,6 +8,7 @@ import ConceptLabSection from "@/components/sections/ConceptLabSection";
 import AchievementsSection from "@/components/sections/AchievementsSection";
 import TeachingSection from "@/components/sections/TeachingSection";
 import TravelSection from "@/components/sections/TravelSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
 import SectionCut from "@/components/motion/SectionCut";
@@ -30,6 +31,7 @@ export default function Home() {
         <AchievementsSection />
         <TeachingSection />
         <TravelSection />
+        <TestimonialsSection />
         <SectionCut scene="04" label="Contact" />
         <ContactSection />
       </main>

@@ -104,3 +104,9 @@ export interface NavLink {
   /** Optional work-grid filter applied on click. */
   filter?: string;
 }
+
+export interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+}

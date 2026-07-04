@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { TEACHING } from "@/lib/constants";
+import { SITE, TEACHING } from "@/lib/constants";
 import { EASE_CINE, fadeUp, VIEWPORT_ONCE } from "@/lib/animations";
 import SectionLabel from "@/components/ui/SectionLabel";
 import SplitReveal from "@/components/motion/SplitReveal";
+import Magnetic from "@/components/ui/Magnetic";
 
 export default function TeachingSection() {
   return (
@@ -81,6 +82,20 @@ export default function TeachingSection() {
                 <p>Real client briefs</p>
                 <p>Full AI production pipeline</p>
                 <p>Output: commercialized AI ads</p>
+              </div>
+
+              {/* enrollment path — mailto works today; swap the href
+                  for the real enroll link when it exists
+                  (TODO: Mazin supplies the enrollment URL) */}
+              <div className="mt-8">
+                <Magnetic strength={0.3}>
+                  <a
+                    href={`mailto:${SITE.email}?subject=AI%20Contentology%20—%20Waitlist`}
+                    className="inline-flex items-center gap-2 rounded-full border border-gold px-7 py-3 font-body text-xs font-semibold uppercase tracking-[0.15em] text-gold transition-colors duration-300 hover:bg-gold hover:text-void"
+                  >
+                    Join the Waitlist
+                  </a>
+                </Magnetic>
               </div>
             </div>
           </motion.div>

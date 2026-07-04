@@ -6,6 +6,7 @@ import type {
   Project,
   Service,
   StatItem,
+  Testimonial,
 } from "@/types";
 
 /* ------------------------------------------------------------------ */
@@ -509,3 +510,60 @@ export const CONTACT = {
   availableFor:
     "AI Brand Films · Course Collaborations · Startup Consulting · Speaking",
 } as const;
+
+/* ------------------------------------------------------------------ */
+/*  Work with me                                                       */
+/* ------------------------------------------------------------------ */
+
+export const WORK_WITH_ME = {
+  offers: [
+    "AI Brand Films",
+    "Course Collaborations",
+    "Startup Consulting",
+    "Speaking",
+  ],
+  // TODO(Mazin): review these steps — generic engagement flow, tune
+  // the wording to how you actually start projects
+  steps: [
+    {
+      n: "01",
+      title: "Brief me",
+      desc: "Email, call, or the form — tell me the brand, the product, and what it needs to feel like.",
+    },
+    {
+      n: "02",
+      title: "Scope together",
+      desc: "We shape the concept, timeline, and budget before anything renders.",
+    },
+    {
+      n: "03",
+      title: "Production",
+      desc: "I build the film and keep you in the loop from first frame to final cut.",
+    },
+  ],
+  /** One-pager PDF — flip `available` when the file lands in
+   *  public/downloads/. TODO(Mazin): supply the PDF. */
+  onePager: {
+    href: "/downloads/mazin-kp-onepager.pdf",
+    available: false,
+  },
+  /** Contact-form endpoint — when set, the form POSTs JSON here;
+   *  until then it falls back to a prefilled email compose.
+   *  TODO(Mazin): supply a Formspree/API endpoint if wanted. */
+  formEndpoint: "",
+} as const;
+
+/** Real client and collaboration names only. */
+export const CLIENTS = [
+  "HU · UAE",
+  "TopAd · Oman",
+  "Coreve",
+  "Nurena",
+  "ICT School",
+  "MuLearn Foundation",
+  "Demand School",
+] as const;
+
+/** TODO(Mazin): real quotes only — component stays hidden until
+ *  this array has entries. */
+export const TESTIMONIALS: Testimonial[] = [];
