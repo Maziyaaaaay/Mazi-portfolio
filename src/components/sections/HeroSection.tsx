@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import {
   AnimatePresence,
   motion,
@@ -20,8 +19,6 @@ import {
   Trophy,
 } from "lucide-react";
 import { HERO } from "@/lib/constants";
-import { asset } from "@/lib/asset";
-import { blurProps } from "@/lib/blur";
 import { EASE_CINE } from "@/lib/animations";
 import FilmStrip from "@/components/ui/FilmStrip";
 import Magnetic from "@/components/ui/Magnetic";
@@ -57,8 +54,6 @@ export default function HeroSection() {
     [sy, scrollYProgress],
     ([m, p]: number[]) => m * -12 + p * 60
   );
-  const photoX = useTransform(sx, (v) => v * 16);
-  const photoY = useTransform(sy, (v) => v * 12);
   const headlineX = useTransform(sx, (v) => v * 7);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 90]);
   const textFade = useTransform(scrollYProgress, [0, 0.85], [1, 0.1]);
@@ -130,7 +125,7 @@ export default function HeroSection() {
       {/* readability scrim — dark enough behind the headline, clears on the right */}
       <div className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-r from-void from-10% via-void/55 to-void/10" />
 
-      <div className="container-cine relative z-10 grid flex-1 items-center gap-12 pb-16 pt-28 lg:grid-cols-[1fr_auto] lg:gap-20 lg:pt-32">
+      <div className="container-cine relative z-10 flex flex-1 items-center pb-16 pt-28 lg:pt-32">
         {/* ------------------------------------------------ text column */}
         <motion.div
           style={reducedMotion ? undefined : { y: textY, opacity: textFade }}
@@ -236,56 +231,6 @@ export default function HeroSection() {
               </button>
             </Magnetic>
           </motion.div>
-        </motion.div>
-
-        {/* ------------------------------------------------ photo column */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, delay: 0.5, ease: EASE_CINE }}
-          style={{ x: photoX, y: photoY }}
-          className="relative hidden lg:block"
-        >
-          {/* amber glow sits outside the clipped frame */}
-          <div
-            className="absolute -inset-10 rounded-full bg-gold/10 blur-3xl"
-            aria-hidden
-          />
-          <div
-            className="relative h-[480px] w-[360px] overflow-hidden xl:h-[520px] xl:w-[390px]"
-            style={{
-              clipPath: "polygon(0 2.5%, 100% 0, 100% 97.5%, 0 100%)",
-              boxShadow: "0 0 80px rgba(200, 169, 110, 0.15)",
-            }}
-          >
-            <Image
-              src={asset("/uploads/profile.jpeg")}
-              {...blurProps("/uploads/profile.jpeg")}
-              alt="Muhammed Mazin KP leaning against a black car, teal striped shirt, Kerala"
-              fill
-              sizes="(min-width: 1280px) 390px, 360px"
-              className="object-cover saturate-110 contrast-105"
-              priority
-            />
-            {/* viewfinder overlay */}
-            <div className="pointer-events-none absolute inset-0" aria-hidden>
-              <span className="absolute left-4 top-5 h-5 w-5 border-l border-t border-gold/50" />
-              <span className="absolute right-4 top-5 h-5 w-5 border-r border-t border-gold/50" />
-              <span className="absolute bottom-5 left-4 h-5 w-5 border-b border-l border-gold/50" />
-              <span className="absolute bottom-5 right-4 h-5 w-5 border-b border-r border-gold/50" />
-              {/* thirds grid */}
-              <span className="absolute inset-y-0 left-1/3 w-px bg-cream/5" />
-              <span className="absolute inset-y-0 left-2/3 w-px bg-cream/5" />
-              <span className="absolute inset-x-0 top-1/3 h-px bg-cream/5" />
-              <span className="absolute inset-x-0 top-2/3 h-px bg-cream/5" />
-              {/* center crosshair */}
-              <span className="absolute left-1/2 top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-gold/40" />
-              <span className="absolute left-1/2 top-1/2 h-px w-3 -translate-x-1/2 -translate-y-1/2 bg-gold/40" />
-              <p className="absolute bottom-3 left-1/2 -translate-x-1/2 font-mono text-[9px] uppercase tracking-[0.3em] text-cream/40">
-                MAZIN KP · 24FPS
-              </p>
-            </div>
-          </div>
         </motion.div>
       </div>
 
